@@ -1,0 +1,3 @@
+cardio_homepage:
+    path:     /
+    defaults: { _controller: CardioBundle:Default:index }
