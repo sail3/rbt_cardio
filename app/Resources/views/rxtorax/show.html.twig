@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>RxTorax</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idrxtorax</th>
+                <td>{{ rxTorax.idrxTorax }}</td>
+            </tr>
+            <tr>
+                <th>Congestionpulmonar</th>
+                <td>{% if rxTorax.congestionPulmonar %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Derramepulmonar</th>
+                <td>{% if rxTorax.derramePulmonar %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Derramepericardico</th>
+                <td>{% if rxTorax.derramePericardico %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Cardiomegalia</th>
+                <td>{% if rxTorax.cardiomegalia %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Neumonia</th>
+                <td>{% if rxTorax.neumonia %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rx-torax_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('rx-torax_edit', { 'id': rxTorax.idrxTorax }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

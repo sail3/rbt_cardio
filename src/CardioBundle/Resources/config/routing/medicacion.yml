@@ -1,0 +1,24 @@
+medicacion_index:
+    path:     /
+    defaults: { _controller: "CardioBundle:Medicacion:index" }
+    methods:  GET
+
+medicacion_show:
+    path:     /{id}/show
+    defaults: { _controller: "CardioBundle:Medicacion:show" }
+    methods:  GET
+
+medicacion_new:
+    path:     /new
+    defaults: { _controller: "CardioBundle:Medicacion:new" }
+    methods:  [GET, POST]
+
+medicacion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CardioBundle:Medicacion:edit" }
+    methods:  [GET, POST]
+
+medicacion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CardioBundle:Medicacion:delete" }
+    methods:  DELETE

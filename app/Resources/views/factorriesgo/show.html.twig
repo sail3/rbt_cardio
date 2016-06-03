@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FactorRiesgo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idfactorriesgo</th>
+                <td>{{ factorRiesgo.idfactorRiesgo }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ factorRiesgo.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ factorRiesgo.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Enable</th>
+                <td>{% if factorRiesgo.enable %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('factor-riesgo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('factor-riesgo_edit', { 'id': factorRiesgo.idfactorRiesgo }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

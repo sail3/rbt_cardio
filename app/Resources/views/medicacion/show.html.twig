@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Medicacion</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idmedicacionalta</th>
+                <td>{{ medicacion.idmedicacionAlta }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ medicacion.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ medicacion.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Enable</th>
+                <td>{% if medicacion.enable %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('medicacion_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('medicacion_edit', { 'id': medicacion.idmedicacionAlta }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

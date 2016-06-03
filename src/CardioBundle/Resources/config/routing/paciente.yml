@@ -1,0 +1,24 @@
+paciente_index:
+    path:     /
+    defaults: { _controller: "CardioBundle:Paciente:index" }
+    methods:  GET
+
+paciente_show:
+    path:     /{id}/show
+    defaults: { _controller: "CardioBundle:Paciente:show" }
+    methods:  GET
+
+paciente_new:
+    path:     /new
+    defaults: { _controller: "CardioBundle:Paciente:new" }
+    methods:  [GET, POST]
+
+paciente_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CardioBundle:Paciente:edit" }
+    methods:  [GET, POST]
+
+paciente_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CardioBundle:Paciente:delete" }
+    methods:  DELETE

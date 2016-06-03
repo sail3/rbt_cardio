@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>EstadoEvolutivo list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idestadoevolutivo</th>
+                <th>Glucosa</th>
+                <th>Creatinina</th>
+                <th>Sodio</th>
+                <th>Hb</th>
+                <th>Vmc</th>
+                <th>Rdw</th>
+                <th>Leucocitos</th>
+                <th>Neutro</th>
+                <th>Linfocitos</th>
+                <th>Troponina</th>
+                <th>Tgp</th>
+                <th>Probnp</th>
+                <th>Lactato</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for estadoEvolutivo in estadoEvolutivos %}
+            <tr>
+                <td><a href="{{ path('estado-evolutivo_show', { 'id': estadoEvolutivo.idestadoEvolutivo }) }}">{{ estadoEvolutivo.idestadoEvolutivo }}</a></td>
+                <td>{{ estadoEvolutivo.glucosa }}</td>
+                <td>{{ estadoEvolutivo.creatinina }}</td>
+                <td>{{ estadoEvolutivo.sodio }}</td>
+                <td>{{ estadoEvolutivo.hb }}</td>
+                <td>{{ estadoEvolutivo.vmc }}</td>
+                <td>{{ estadoEvolutivo.rdw }}</td>
+                <td>{{ estadoEvolutivo.leucocitos }}</td>
+                <td>{{ estadoEvolutivo.neutro }}</td>
+                <td>{{ estadoEvolutivo.linfocitos }}</td>
+                <td>{{ estadoEvolutivo.troponina }}</td>
+                <td>{{ estadoEvolutivo.tgp }}</td>
+                <td>{{ estadoEvolutivo.proBnp }}</td>
+                <td>{{ estadoEvolutivo.lactato }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('estado-evolutivo_show', { 'id': estadoEvolutivo.idestadoEvolutivo }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('estado-evolutivo_edit', { 'id': estadoEvolutivo.idestadoEvolutivo }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('estado-evolutivo_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

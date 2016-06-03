@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>RxTorax list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idrxtorax</th>
+                <th>Congestionpulmonar</th>
+                <th>Derramepulmonar</th>
+                <th>Derramepericardico</th>
+                <th>Cardiomegalia</th>
+                <th>Neumonia</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rxTorax in rxToraxes %}
+            <tr>
+                <td><a href="{{ path('rx-torax_show', { 'id': rxTorax.idrxTorax }) }}">{{ rxTorax.idrxTorax }}</a></td>
+                <td>{% if rxTorax.congestionPulmonar %}Yes{% else %}No{% endif %}</td>
+                <td>{% if rxTorax.derramePulmonar %}Yes{% else %}No{% endif %}</td>
+                <td>{% if rxTorax.derramePericardico %}Yes{% else %}No{% endif %}</td>
+                <td>{% if rxTorax.cardiomegalia %}Yes{% else %}No{% endif %}</td>
+                <td>{% if rxTorax.neumonia %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('rx-torax_show', { 'id': rxTorax.idrxTorax }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('rx-torax_edit', { 'id': rxTorax.idrxTorax }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('rx-torax_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block page_title %}
+  CausaDescompensante list
+{% endblock %}
+
+{% block body %}
+    <table>
+        <thead>
+            <tr>
+                <th>Idcausadescompensante</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for causaDescompensante in causaDescompensantes %}
+            <tr>
+                <td><a href="{{ path('causa_show', { 'id': causaDescompensante.id }) }}">{{ causaDescompensante.id }}</a></td>
+                <td>{{ causaDescompensante.nombre }}</td>
+                <td>{{ causaDescompensante.descripcion }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('causa_show', { 'id': causaDescompensante.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('causa_edit', { 'id': causaDescompensante.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('causa_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

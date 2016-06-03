@@ -1,0 +1,24 @@
+causa_index:
+    path:     /
+    defaults: { _controller: "CardioBundle:CausaDescompensante:index" }
+    methods:  GET
+
+causa_show:
+    path:     /{id}/show
+    defaults: { _controller: "CardioBundle:CausaDescompensante:show" }
+    methods:  GET
+
+causa_new:
+    path:     /new
+    defaults: { _controller: "CardioBundle:CausaDescompensante:new" }
+    methods:  [GET, POST]
+
+causa_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CardioBundle:CausaDescompensante:edit" }
+    methods:  [GET, POST]
+
+causa_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CardioBundle:CausaDescompensante:delete" }
+    methods:  DELETE

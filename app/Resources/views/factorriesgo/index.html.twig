@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FactorRiesgo list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idfactorriesgo</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Enable</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for factorRiesgo in factorRiesgos %}
+            <tr>
+                <td><a href="{{ path('factor-riesgo_show', { 'id': factorRiesgo.idfactorRiesgo }) }}">{{ factorRiesgo.idfactorRiesgo }}</a></td>
+                <td>{{ factorRiesgo.nombre }}</td>
+                <td>{{ factorRiesgo.descripcion }}</td>
+                <td>{% if factorRiesgo.enable %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('factor-riesgo_show', { 'id': factorRiesgo.idfactorRiesgo }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('factor-riesgo_edit', { 'id': factorRiesgo.idfactorRiesgo }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('factor-riesgo_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

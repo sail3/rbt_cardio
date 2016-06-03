@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Medicacion list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idmedicacionalta</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Enable</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medicacion in medicacions %}
+            <tr>
+                <td><a href="{{ path('medicacion_show', { 'id': medicacion.idmedicacionAlta }) }}">{{ medicacion.idmedicacionAlta }}</a></td>
+                <td>{{ medicacion.nombre }}</td>
+                <td>{{ medicacion.descripcion }}</td>
+                <td>{% if medicacion.enable %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('medicacion_show', { 'id': medicacion.idmedicacionAlta }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('medicacion_edit', { 'id': medicacion.idmedicacionAlta }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('medicacion_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

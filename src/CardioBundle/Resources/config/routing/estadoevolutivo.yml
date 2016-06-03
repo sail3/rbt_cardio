@@ -1,0 +1,24 @@
+estado-evolutivo_index:
+    path:     /
+    defaults: { _controller: "CardioBundle:EstadoEvolutivo:index" }
+    methods:  GET
+
+estado-evolutivo_show:
+    path:     /{id}/show
+    defaults: { _controller: "CardioBundle:EstadoEvolutivo:show" }
+    methods:  GET
+
+estado-evolutivo_new:
+    path:     /new
+    defaults: { _controller: "CardioBundle:EstadoEvolutivo:new" }
+    methods:  [GET, POST]
+
+estado-evolutivo_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CardioBundle:EstadoEvolutivo:edit" }
+    methods:  [GET, POST]
+
+estado-evolutivo_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CardioBundle:EstadoEvolutivo:delete" }
+    methods:  DELETE
