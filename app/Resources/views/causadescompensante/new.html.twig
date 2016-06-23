@@ -1,16 +1,61 @@
 {% extends 'base.html.twig' %}
-
+{% block page_title %}
+  Nueva Causa Descompensante
+{% endblock %}
 {% block body %}
-    <h1>CausaDescompensante creation</h1>
+<div class="col-lg-6">
+  <div class="panel">
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    {{ form_start(form,{'attr':{
+    'class' : 'form-horizontal'
+    } }) }}
+    {{ form_errors(form) }}
+    <div class="panel-body">
+      <div class="form-group">
+        {{ form_label(form.nombre, "Nombre", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.nombre, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form_label(form.descripcion, "Descripcion", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.descripcion, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form_label(form.idficha, "Ficha", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.idficha, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3">
+          <button class="btn btn-info" type="submit">Crear</button>
+          <a href="{{ path('causa_index') }}">
+          <button class="btn btn-warning" type="button">Volver a la lista</button>
+          </a>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3">
+        </div>
+      </div>
+    </div>
+    <!-- <input type="submit" value="Edit"/> -->
     {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('causa_index') }}">Back to the list</a>
-        </li>
-    </ul>
+</div>
+</div>
 {% endblock %}

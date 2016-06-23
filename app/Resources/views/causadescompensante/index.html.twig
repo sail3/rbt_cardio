@@ -1,43 +1,55 @@
 {% extends 'base.html.twig' %}
 
 {% block page_title %}
-  CausaDescompensante list
+  Causas Descompensante
 {% endblock %}
 
 {% block body %}
-    <table>
-        <thead>
-            <tr>
-                <th>Idcausadescompensante</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for causaDescompensante in causaDescompensantes %}
-            <tr>
-                <td><a href="{{ path('causa_show', { 'id': causaDescompensante.id }) }}">{{ causaDescompensante.id }}</a></td>
-                <td>{{ causaDescompensante.nombre }}</td>
-                <td>{{ causaDescompensante.descripcion }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('causa_show', { 'id': causaDescompensante.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('causa_edit', { 'id': causaDescompensante.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+  <table class="table table-hover table-vcenter">
+    <thead>
+      <tr>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for causaDescompensante in causaDescompensantes %}
+        <tr>
+          <td class="text-center">
+            <a href="{{ path('causa_show', { 'id': causaDescompensante.id }) }}">{{ causaDescompensante.id }}</a>
+          </td>
+          <td>
 
-    <ul>
-        <li>
-            <a href="{{ path('causa_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+            <span class="text-semibold">
+              {{ causaDescompensante.nombre }}
+            </span><br>
+            <small class="text-muted">
+              {{ causaDescompensante.descripcion }}
+            </small>
+          </td>
+          <td>
+            <ul>
+              <li>
+                <a href="{{ path('causa_show', { 'id': causaDescompensante.id }) }}">
+                  <div class="label label-table label-info">Ver Detalles</div>
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('causa_edit', { 'id': causaDescompensante.id }) }}">
+                  <div class="label label-table label-warning">Modificar</div>
+                </a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ path('causa_new') }}">
+    <span class="btn btn-success fileinput-button dz-clickable">
+      <i class="fa fa-plus"></i>
+      <span>Agregar nuevo elemento</span>
+    </span>
+  </a>
 {% endblock %}
