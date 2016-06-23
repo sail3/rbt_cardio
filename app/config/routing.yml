@@ -1,6 +1,6 @@
 cardio:
     resource: "@CardioBundle/Resources/config/routing.yml"
-    prefix:   cardio/
+
 
 app:
     resource: "@AppBundle/Controller/"
