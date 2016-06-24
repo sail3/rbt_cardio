@@ -8,6 +8,12 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CardioBundle:Default:index.html.twig');
+      $em = $this->getDoctrine()->getManager();
+
+      $fichas = $em->getRepository('CardioBundle:Ficha')->findAll();
+
+      return $this->render('ficha/index.html.twig', array(
+          'fichas' => $fichas,
+      ));
     }
 }
