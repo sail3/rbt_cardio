@@ -42,36 +42,14 @@ class FactorRiesgo
      */
     private $enable;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Ficha", inversedBy="idfactorRiesgo")
-     * @ORM\JoinTable(name="factor_riesgo_has_ficha",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idfactor_riesgo", referencedColumnName="idfactor_riesgo")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idficha", referencedColumnName="idficha")
-     *   }
-     * )
-     */
-    private $idficha;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idficha = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 
     /**
      * Get idfactorRiesgo
      *
-     * @return integer 
+     * @return integer
      */
-    public function getIdfactorRiesgo()
+    public function getId()
     {
         return $this->idfactorRiesgo;
     }
@@ -92,7 +70,7 @@ class FactorRiesgo
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -115,7 +93,7 @@ class FactorRiesgo
     /**
      * Get descripcion
      *
-     * @return string 
+     * @return string
      */
     public function getDescripcion()
     {
@@ -138,43 +116,10 @@ class FactorRiesgo
     /**
      * Get enable
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEnable()
     {
         return $this->enable;
-    }
-
-    /**
-     * Add idficha
-     *
-     * @param \CardioBundle\Entity\Ficha $idficha
-     * @return FactorRiesgo
-     */
-    public function addIdficha(\CardioBundle\Entity\Ficha $idficha)
-    {
-        $this->idficha[] = $idficha;
-
-        return $this;
-    }
-
-    /**
-     * Remove idficha
-     *
-     * @param \CardioBundle\Entity\Ficha $idficha
-     */
-    public function removeIdficha(\CardioBundle\Entity\Ficha $idficha)
-    {
-        $this->idficha->removeElement($idficha);
-    }
-
-    /**
-     * Get idficha
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getIdficha()
-    {
-        return $this->idficha;
     }
 }

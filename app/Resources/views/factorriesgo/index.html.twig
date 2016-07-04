@@ -1,43 +1,57 @@
 {% extends 'base.html.twig' %}
-
+{% block page_title %}
+  Factores de Riesgo
+{% endblock %}
 {% block body %}
-    <h1>FactorRiesgo list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Idfactorriesgo</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Enable</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for factorRiesgo in factorRiesgos %}
-            <tr>
-                <td><a href="{{ path('factor-riesgo_show', { 'id': factorRiesgo.idfactorRiesgo }) }}">{{ factorRiesgo.idfactorRiesgo }}</a></td>
-                <td>{{ factorRiesgo.nombre }}</td>
-                <td>{{ factorRiesgo.descripcion }}</td>
-                <td>{% if factorRiesgo.enable %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('factor-riesgo_show', { 'id': factorRiesgo.idfactorRiesgo }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('factor-riesgo_edit', { 'id': factorRiesgo.idfactorRiesgo }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('factor-riesgo_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+  <table class="table table-hover table-vcenter">
+    <thead>
+      <tr>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Habilitado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for factorRiesgo in factorRiesgos %}
+        <tr>
+          <td>
+            <a href="{{ path('factor-riesgo_show', { 'id': factorRiesgo.id }) }}">{{ factorRiesgo.id }}</a>
+          </td>
+          <td>
+            <span class="text-semibold">
+              {{ factorRiesgo.nombre }}
+            </span><br>
+            <small class="text-muted">
+              {{ factorRiesgo.descripcion }}
+            </small>
+          </td>
+          <td>
+            {% if factorRiesgo.enable %}Si{% else %}No{% endif %}
+          </td>
+          <td>
+            <ul>
+              <li>
+                <a href="{{ path('factor-riesgo_show', { 'id': factorRiesgo.id }) }}">
+                  <div class="label label-table label-info">Ver Detalles</div>
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('factor-riesgo_edit', { 'id': factorRiesgo.id }) }}">
+                  <div class="label label-table label-warning">Modificar</div>
+                </a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ path('factor-riesgo_new') }}">
+    <span class="btn btn-success fileinput-button dz-clickable">
+      <i class="fa fa-plus"></i>
+      <span>Agregar nuevo elemento</span>
+    </span>
+  </a>
 {% endblock %}
