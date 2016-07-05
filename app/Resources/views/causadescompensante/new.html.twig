@@ -32,12 +32,14 @@
         </div>
       </div>
       <div class="form-group">
-        {{ form_label(form.idficha, "Ficha", {'label_attr' : {
+        {{ form_label(form.enable, "Enable", {'label_attr' : {
         'class' : 'col-sm-3 control-label'
         } }) }}
         <div class="col-sm-6">
-          {{ form_widget(form.idficha, {'attr':{
-        'class' : 'form-control input-sm'
+          {{ form_widget(form.enable, {'attr':{
+        'class' : 'form-control input-sm',
+        'data-switchery' : 'true',
+        'style' : "display: none;"
         } }) }}
         </div>
       </div>
@@ -58,4 +60,11 @@
     {{ form_end(form) }}
 </div>
 </div>
+{% endblock %}
+
+{% block script_region %}
+<script type="text/javascript">
+new Switchery(document.getElementById('causa_descompensante_enable'), { size: 'large' });
+
+</script>
 {% endblock %}

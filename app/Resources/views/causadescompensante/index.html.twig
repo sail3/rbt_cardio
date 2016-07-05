@@ -10,6 +10,7 @@
       <tr>
         <th>Codigo</th>
         <th>Nombre</th>
+        <th>Habilitado</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -27,6 +28,9 @@
             <small class="text-muted">
               {{ causaDescompensante.descripcion }}
             </small>
+          </td>
+          <td>
+            {% if causaDescompensante.enable %}Si{% else %}No{% endif %}
           </td>
           <td>
             <ul>

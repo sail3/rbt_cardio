@@ -52,6 +52,27 @@
                 <span class="text">{{ causaDescompensante.descripcion }}</span>
               </td>
             </tr>
+            <tr>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Habilitado</span>
+              </td>
+              <td class="text-center">
+                {% if causaDescompensante.enable %}
+                <span class="btn btn-success fileinput-button dz-clickable">
+                  <span>Habilitado</span>
+                </span>
+                {% else %}
+                <span class="btn btn-danger fileinput-button dz-clickable">
+                  <span>Deshabilitado</span>
+                </span>
+                {% endif %}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -63,10 +84,6 @@
             </a>
             <a href="{{ path('causa_index') }}">
               <button class="btn btn-warning" type="button">Volver</button>
-              {{ form_start(delete_form) }}
-              <button class="btn btn-danger" type="submit">Eliminar</button>
-              <!-- <input type="submit" value="Delete"> -->
-              {{ form_end(delete_form) }}
             </a>
           </div>
         </div>

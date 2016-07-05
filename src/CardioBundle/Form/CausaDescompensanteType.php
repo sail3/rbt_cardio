@@ -17,7 +17,7 @@ class CausaDescompensanteType extends AbstractType
         $builder
             ->add('nombre')
             ->add('descripcion')
-            ->add('idficha')
+            ->add('enable')
         ;
     }
     

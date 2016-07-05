@@ -36,27 +36,12 @@ class CausaDescompensante
     private $descripcion;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var boolean
      *
-     * @ORM\ManyToMany(targetEntity="Ficha", inversedBy="idcausaDescompensante")
-     * @ORM\JoinTable(name="causa_descompensante_has_ficha",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idcausa_descompensante", referencedColumnName="idcausa_descompensante")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idficha", referencedColumnName="idficha")
-     *   }
-     * )
+     * @ORM\Column(name="enable", type="boolean", nullable=false)
      */
-    private $idficha;
+    private $enable;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idficha = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 
     /**
@@ -116,35 +101,25 @@ class CausaDescompensante
     }
 
     /**
-     * Add idficha
+     * Set enable
      *
-     * @param \CardioBundle\Entity\Ficha $idficha
+     * @param boolean $enable
      * @return CausaDescompensante
      */
-    public function addIdficha(\CardioBundle\Entity\Ficha $idficha)
+    public function setEnable($enable)
     {
-        $this->idficha[] = $idficha;
+        $this->enable = $enable;
 
         return $this;
     }
 
     /**
-     * Remove idficha
+     * Get enable
      *
-     * @param \CardioBundle\Entity\Ficha $idficha
+     * @return boolean
      */
-    public function removeIdficha(\CardioBundle\Entity\Ficha $idficha)
+    public function getEnable()
     {
-        $this->idficha->removeElement($idficha);
-    }
-
-    /**
-     * Get idficha
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdficha()
-    {
-        return $this->idficha;
+        return $this->enable;
     }
 }
