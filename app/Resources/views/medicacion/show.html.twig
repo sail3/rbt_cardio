@@ -1,40 +1,96 @@
 {% extends 'base.html.twig' %}
-
+{% block page_title %}
+    Medicacion
+{% endblock %}
 {% block body %}
-    <h1>Medicacion</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Idmedicacionalta</th>
-                <td>{{ medicacion.idmedicacionAlta }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ medicacion.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Descripcion</th>
-                <td>{{ medicacion.descripcion }}</td>
-            </tr>
-            <tr>
-                <th>Enable</th>
-                <td>{% if medicacion.enable %}Yes{% else %}No{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="col-lg-6">
+          <div class="panel">
+            <div class="panel-heading">
+              <h3 class="panel-title">Detalle</h3>
+            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('medicacion_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('medicacion_edit', { 'id': medicacion.idmedicacionAlta }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <div class="panel-body">
+              <table class="table table-hover table-vcenter">
+                <tbody>
+                  <tr>
+                    <td class="text-center">
+                      <span>
+                        <i class="fa fa-plus fa-lg"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="text-semibold">Codigo</span>
+                    </td>
+                    <td class="text-center">
+                      <span class="text">{{ medicacion.id }}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <span>
+                        <i class="fa fa-plus fa-lg"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="text-semibold">Nombre</span>
+                    </td>
+                    <td class="text-center">
+                      <span class="text">{{ medicacion.nombre }}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <span>
+                        <i class="fa fa-plus fa-lg"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="text-semibold">Descripcion</span>
+                    </td>
+                    <td class="text-center">
+                      <span class="text">{{ medicacion.descripcion }}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <span>
+                        <i class="fa fa-plus fa-lg"></i>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="text-semibold">Habilitado</span>
+                    </td>
+                    <td class="text-center">
+                      {% if medicacion.enable %}
+                      <span class="btn btn-success fileinput-button dz-clickable">
+                        <span>Habilitado</span>
+                      </span>
+                      {% else %}
+                      <span class="btn btn-danger fileinput-button dz-clickable">
+                        <span>Deshabilitado</span>
+                      </span>
+                      {% endif %}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel-footer">
+              <div class="row">
+                <div class="col-sm-9 col-sm-offset-3">
+                  <a href="{{ path('medicacion_edit', {'id': medicacion.id }) }}">
+                    <button class="btn btn-info" type="submit">Editar</button>
+                  </a>
+                  <a href="{{ path('medicacion_index') }}">
+                    <button class="btn btn-warning" type="button">Volver</button>
+                  </a>
+                    <!-- {{ form_start(delete_form) }}
+                    <button class="btn btn-danger" type="submit">Eliminar</button>
+                    {{ form_end(delete_form) }} -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 {% endblock %}

@@ -18,7 +18,6 @@ class MedicacionType extends AbstractType
             ->add('nombre')
             ->add('descripcion')
             ->add('enable')
-            ->add('idficha')
         ;
     }
     
