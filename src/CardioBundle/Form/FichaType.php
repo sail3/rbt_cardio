@@ -15,29 +15,21 @@ class FichaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fechaIngreso', 'datetime')
+            ->add('fechaIngreso','text')
             ->add('motivoHospitalizacion')
             ->add('fallaCardiaca')
             ->add('fallaCardiacaEtiologia')
             ->add('nyhaIngreso')
             ->add('sindromeCardiorenal')
-            ->add('sindromeCardiorenalTipo')
             ->add('fraccionEyeccion')
-            ->add('transfusionSanguinea')
-            ->add('cceeAsiste')
-            ->add('cceeUltima', 'datetime')
-            ->add('hospitalizaciones')
+            ->add('tapse')
+            ->add('altaMotivo')
+            ->add('altaFecha', 'text')
+            ->add('altaDescripcion')
             ->add('anotaciones')
-            ->add('examenSolicitado')
-            ->add('idcausaDescompensante')
-            ->add('idestadoEvolutivo')
-            ->add('idfactorRiesgo')
-            ->add('idpaciente')
-            ->add('idmedicacionAlta')
-            ->add('idrxTorax')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

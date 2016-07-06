@@ -13,42 +13,38 @@
                 <th>Fallacardiacaetiologia</th>
                 <th>Nyhaingreso</th>
                 <th>Sindromecardiorenal</th>
-                <th>Sindromecardiorenaltipo</th>
                 <th>Fraccioneyeccion</th>
-                <th>Transfusionsanguinea</th>
-                <th>Cceeasiste</th>
-                <th>Cceeultima</th>
-                <th>Hospitalizaciones</th>
+                <th>Tapse</th>
+                <th>Altamotivo</th>
+                <th>Altafecha</th>
+                <th>Altadescripcion</th>
                 <th>Anotaciones</th>
-                <th>Examensolicitado</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for ficha in fichas %}
             <tr>
-                <td><a href="{{ path('ficha_show', { 'id': ficha.idficha }) }}">{{ ficha.idficha }}</a></td>
+                <td><a href="{{ path('ficha_show', { 'id': ficha.id }) }}">{{ ficha.id }}</a></td>
                 <td>{% if ficha.fechaIngreso %}{{ ficha.fechaIngreso|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ ficha.motivoHospitalizacion }}</td>
                 <td>{% if ficha.fallaCardiaca %}Yes{% else %}No{% endif %}</td>
                 <td>{{ ficha.fallaCardiacaEtiologia }}</td>
                 <td>{{ ficha.nyhaIngreso }}</td>
-                <td>{% if ficha.sindromeCardiorenal %}Yes{% else %}No{% endif %}</td>
-                <td>{{ ficha.sindromeCardiorenalTipo }}</td>
+                <td>{{ ficha.sindromeCardiorenal }}</td>
                 <td>{{ ficha.fraccionEyeccion }}</td>
-                <td>{% if ficha.transfusionSanguinea %}Yes{% else %}No{% endif %}</td>
-                <td>{% if ficha.cceeAsiste %}Yes{% else %}No{% endif %}</td>
-                <td>{% if ficha.cceeUltima %}{{ ficha.cceeUltima|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ ficha.hospitalizaciones }}</td>
+                <td>{{ ficha.tapse }}</td>
+                <td>{{ ficha.altaMotivo }}</td>
+                <td>{% if ficha.altaFecha %}{{ ficha.altaFecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ ficha.altaDescripcion }}</td>
                 <td>{{ ficha.anotaciones }}</td>
-                <td>{{ ficha.examenSolicitado }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('ficha_show', { 'id': ficha.idficha }) }}">show</a>
+                            <a href="{{ path('ficha_show', { 'id': ficha.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('ficha_edit', { 'id': ficha.idficha }) }}">edit</a>
+                            <a href="{{ path('ficha_edit', { 'id': ficha.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>

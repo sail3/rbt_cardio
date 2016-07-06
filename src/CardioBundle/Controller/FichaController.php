@@ -35,11 +35,17 @@ class FichaController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $ficha = new Ficha();
         $form = $this->createForm('CardioBundle\Form\FichaType', $ficha);
+        $factoresRiesgo = $em->getRepository('CardioBundle:FactorRiesgo')->findAll();
+        dump($factoresRiesgo);
+        // exit;
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            $ficha->setFechaIngreso(new \DateTime(rtrim(str_replace(['AM','PM'],"", $ficha->getFechaIngreso()))));
+            $ficha->setAltaFecha(new \DateTime(rtrim(str_replace(['AM','PM'],"", $ficha->getAltaFecha()))));
             $em = $this->getDoctrine()->getManager();
             $em->persist($ficha);
             $em->flush();
@@ -50,6 +56,7 @@ class FichaController extends Controller
         return $this->render('ficha/new.html.twig', array(
             'ficha' => $ficha,
             'form' => $form->createView(),
+            'factoresRiesgo' => $factoresRiesgo,
         ));
     }
 

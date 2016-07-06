@@ -7,7 +7,7 @@
         <tbody>
             <tr>
                 <th>Idficha</th>
-                <td>{{ ficha.idficha }}</td>
+                <td>{{ ficha.id }}</td>
             </tr>
             <tr>
                 <th>Fechaingreso</th>
@@ -31,39 +31,31 @@
             </tr>
             <tr>
                 <th>Sindromecardiorenal</th>
-                <td>{% if ficha.sindromeCardiorenal %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Sindromecardiorenaltipo</th>
-                <td>{{ ficha.sindromeCardiorenalTipo }}</td>
+                <td>{{ ficha.sindromeCardiorenal }}</td>
             </tr>
             <tr>
                 <th>Fraccioneyeccion</th>
                 <td>{{ ficha.fraccionEyeccion }}</td>
             </tr>
             <tr>
-                <th>Transfusionsanguinea</th>
-                <td>{% if ficha.transfusionSanguinea %}Yes{% else %}No{% endif %}</td>
+                <th>Tapse</th>
+                <td>{{ ficha.tapse }}</td>
             </tr>
             <tr>
-                <th>Cceeasiste</th>
-                <td>{% if ficha.cceeAsiste %}Yes{% else %}No{% endif %}</td>
+                <th>Altamotivo</th>
+                <td>{{ ficha.altaMotivo }}</td>
             </tr>
             <tr>
-                <th>Cceeultima</th>
-                <td>{% if ficha.cceeUltima %}{{ ficha.cceeUltima|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>Altafecha</th>
+                <td>{% if ficha.altaFecha %}{{ ficha.altaFecha|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Hospitalizaciones</th>
-                <td>{{ ficha.hospitalizaciones }}</td>
+                <th>Altadescripcion</th>
+                <td>{{ ficha.altaDescripcion }}</td>
             </tr>
             <tr>
                 <th>Anotaciones</th>
                 <td>{{ ficha.anotaciones }}</td>
-            </tr>
-            <tr>
-                <th>Examensolicitado</th>
-                <td>{{ ficha.examenSolicitado }}</td>
             </tr>
         </tbody>
     </table>
@@ -73,7 +65,7 @@
             <a href="{{ path('ficha_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('ficha_edit', { 'id': ficha.idficha }) }}">Edit</a>
+            <a href="{{ path('ficha_edit', { 'id': ficha.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

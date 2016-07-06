@@ -45,65 +45,58 @@ class Ficha
     /**
      * @var string
      *
-     * @ORM\Column(name="falla_cardiaca_etiologia", type="string", length=100, nullable=true)
+     * @ORM\Column(name="falla_cardiaca_etiologia", type="string", length=45, nullable=true)
      */
     private $fallaCardiacaEtiologia;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nyha_ingreso", type="string", length=2, nullable=true)
+     * @ORM\Column(name="nyha_ingreso", type="string", length=45, nullable=true)
      */
     private $nyhaIngreso;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="sindrome_cardiorenal", type="boolean", nullable=true)
+     * @ORM\Column(name="sindrome_cardiorenal", type="string", length=45, nullable=true)
      */
     private $sindromeCardiorenal;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sindrome_cardiorenal_tipo", type="string", length=2, nullable=true)
-     */
-    private $sindromeCardiorenalTipo;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="fraccion_eyeccion", type="integer", nullable=true)
+     * @ORM\Column(name="fraccion_eyeccion", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $fraccionEyeccion;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="transfusion_sanguinea", type="boolean", nullable=true)
+     * @ORM\Column(name="tapse", type="decimal", precision=10, scale=0, nullable=true)
      */
-    private $transfusionSanguinea;
+    private $tapse;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="ccee_asiste", type="boolean", nullable=true)
+     * @ORM\Column(name="alta_motivo", type="string", length=45, nullable=true)
      */
-    private $cceeAsiste;
+    private $altaMotivo;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="ccee_ultima", type="datetime", nullable=true)
+     * @ORM\Column(name="alta_fecha", type="datetime", nullable=true)
      */
-    private $cceeUltima;
+    private $altaFecha;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="hospitalizaciones", type="integer", nullable=true)
+     * @ORM\Column(name="alta_descripcion", type="string", length=45, nullable=true)
      */
-    private $hospitalizaciones;
+    private $altaDescripcion;
 
     /**
      * @var string
@@ -112,75 +105,6 @@ class Ficha
      */
     private $anotaciones;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="examen_solicitado", type="text", nullable=true)
-     */
-    private $examenSolicitado;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="CausaDescompensante", mappedBy="idficha")
-     */
-    private $idcausaDescompensante;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="EstadoEvolutivo", mappedBy="idficha")
-     */
-    private $idestadoEvolutivo;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="FactorRiesgo", mappedBy="idficha")
-     */
-    private $idfactorRiesgo;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Paciente", inversedBy="idficha")
-     * @ORM\JoinTable(name="ficha_has_paciente",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idficha", referencedColumnName="idficha")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idpaciente", referencedColumnName="idpaciente")
-     *   }
-     * )
-     */
-    private $idpaciente;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Medicacion", mappedBy="idficha")
-     */
-    private $idmedicacionAlta;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="RxTorax", mappedBy="idficha")
-     */
-    private $idrxTorax;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idcausaDescompensante = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->idestadoEvolutivo = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->idfactorRiesgo = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->idpaciente = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->idmedicacionAlta = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->idrxTorax = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 
     /**
@@ -188,7 +112,7 @@ class Ficha
      *
      * @return integer
      */
-    public function getIdficha()
+    public function getId()
     {
         return $this->idficha;
     }
@@ -311,7 +235,7 @@ class Ficha
     /**
      * Set sindromeCardiorenal
      *
-     * @param boolean $sindromeCardiorenal
+     * @param string $sindromeCardiorenal
      * @return Ficha
      */
     public function setSindromeCardiorenal($sindromeCardiorenal)
@@ -324,7 +248,7 @@ class Ficha
     /**
      * Get sindromeCardiorenal
      *
-     * @return boolean
+     * @return string
      */
     public function getSindromeCardiorenal()
     {
@@ -332,32 +256,9 @@ class Ficha
     }
 
     /**
-     * Set sindromeCardiorenalTipo
-     *
-     * @param string $sindromeCardiorenalTipo
-     * @return Ficha
-     */
-    public function setSindromeCardiorenalTipo($sindromeCardiorenalTipo)
-    {
-        $this->sindromeCardiorenalTipo = $sindromeCardiorenalTipo;
-
-        return $this;
-    }
-
-    /**
-     * Get sindromeCardiorenalTipo
-     *
-     * @return string
-     */
-    public function getSindromeCardiorenalTipo()
-    {
-        return $this->sindromeCardiorenalTipo;
-    }
-
-    /**
      * Set fraccionEyeccion
      *
-     * @param integer $fraccionEyeccion
+     * @param string $fraccionEyeccion
      * @return Ficha
      */
     public function setFraccionEyeccion($fraccionEyeccion)
@@ -370,7 +271,7 @@ class Ficha
     /**
      * Get fraccionEyeccion
      *
-     * @return integer
+     * @return string
      */
     public function getFraccionEyeccion()
     {
@@ -378,95 +279,95 @@ class Ficha
     }
 
     /**
-     * Set transfusionSanguinea
+     * Set tapse
      *
-     * @param boolean $transfusionSanguinea
+     * @param string $tapse
      * @return Ficha
      */
-    public function setTransfusionSanguinea($transfusionSanguinea)
+    public function setTapse($tapse)
     {
-        $this->transfusionSanguinea = $transfusionSanguinea;
+        $this->tapse = $tapse;
 
         return $this;
     }
 
     /**
-     * Get transfusionSanguinea
+     * Get tapse
      *
-     * @return boolean
+     * @return string
      */
-    public function getTransfusionSanguinea()
+    public function getTapse()
     {
-        return $this->transfusionSanguinea;
+        return $this->tapse;
     }
 
     /**
-     * Set cceeAsiste
+     * Set altaMotivo
      *
-     * @param boolean $cceeAsiste
+     * @param string $altaMotivo
      * @return Ficha
      */
-    public function setCceeAsiste($cceeAsiste)
+    public function setAltaMotivo($altaMotivo)
     {
-        $this->cceeAsiste = $cceeAsiste;
+        $this->altaMotivo = $altaMotivo;
 
         return $this;
     }
 
     /**
-     * Get cceeAsiste
+     * Get altaMotivo
      *
-     * @return boolean
+     * @return string
      */
-    public function getCceeAsiste()
+    public function getAltaMotivo()
     {
-        return $this->cceeAsiste;
+        return $this->altaMotivo;
     }
 
     /**
-     * Set cceeUltima
+     * Set altaFecha
      *
-     * @param \DateTime $cceeUltima
+     * @param \DateTime $altaFecha
      * @return Ficha
      */
-    public function setCceeUltima($cceeUltima)
+    public function setAltaFecha($altaFecha)
     {
-        $this->cceeUltima = $cceeUltima;
+        $this->altaFecha = $altaFecha;
 
         return $this;
     }
 
     /**
-     * Get cceeUltima
+     * Get altaFecha
      *
      * @return \DateTime
      */
-    public function getCceeUltima()
+    public function getAltaFecha()
     {
-        return $this->cceeUltima;
+        return $this->altaFecha;
     }
 
     /**
-     * Set hospitalizaciones
+     * Set altaDescripcion
      *
-     * @param integer $hospitalizaciones
+     * @param string $altaDescripcion
      * @return Ficha
      */
-    public function setHospitalizaciones($hospitalizaciones)
+    public function setAltaDescripcion($altaDescripcion)
     {
-        $this->hospitalizaciones = $hospitalizaciones;
+        $this->altaDescripcion = $altaDescripcion;
 
         return $this;
     }
 
     /**
-     * Get hospitalizaciones
+     * Get altaDescripcion
      *
-     * @return integer
+     * @return string
      */
-    public function getHospitalizaciones()
+    public function getAltaDescripcion()
     {
-        return $this->hospitalizaciones;
+        return $this->altaDescripcion;
     }
 
     /**
@@ -490,231 +391,5 @@ class Ficha
     public function getAnotaciones()
     {
         return $this->anotaciones;
-    }
-
-    /**
-     * Set examenSolicitado
-     *
-     * @param string $examenSolicitado
-     * @return Ficha
-     */
-    public function setExamenSolicitado($examenSolicitado)
-    {
-        $this->examenSolicitado = $examenSolicitado;
-
-        return $this;
-    }
-
-    /**
-     * Get examenSolicitado
-     *
-     * @return string
-     */
-    public function getExamenSolicitado()
-    {
-        return $this->examenSolicitado;
-    }
-
-    /**
-     * Add idcausaDescompensante
-     *
-     * @param \CardioBundle\Entity\CausaDescompensante $idcausaDescompensante
-     * @return Ficha
-     */
-    public function addIdcausaDescompensante(\CardioBundle\Entity\CausaDescompensante $idcausaDescompensante)
-    {
-        $this->idcausaDescompensante[] = $idcausaDescompensante;
-
-        return $this;
-    }
-
-    /**
-     * Remove idcausaDescompensante
-     *
-     * @param \CardioBundle\Entity\CausaDescompensante $idcausaDescompensante
-     */
-    public function removeIdcausaDescompensante(\CardioBundle\Entity\CausaDescompensante $idcausaDescompensante)
-    {
-        $this->idcausaDescompensante->removeElement($idcausaDescompensante);
-    }
-
-    /**
-     * Get idcausaDescompensante
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdcausaDescompensante()
-    {
-        return $this->idcausaDescompensante;
-    }
-
-    /**
-     * Add idestadoEvolutivo
-     *
-     * @param \CardioBundle\Entity\EstadoEvolutivo $idestadoEvolutivo
-     * @return Ficha
-     */
-    public function addIdestadoEvolutivo(\CardioBundle\Entity\EstadoEvolutivo $idestadoEvolutivo)
-    {
-        $this->idestadoEvolutivo[] = $idestadoEvolutivo;
-
-        return $this;
-    }
-
-    /**
-     * Remove idestadoEvolutivo
-     *
-     * @param \CardioBundle\Entity\EstadoEvolutivo $idestadoEvolutivo
-     */
-    public function removeIdestadoEvolutivo(\CardioBundle\Entity\EstadoEvolutivo $idestadoEvolutivo)
-    {
-        $this->idestadoEvolutivo->removeElement($idestadoEvolutivo);
-    }
-
-    /**
-     * Get idestadoEvolutivo
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdestadoEvolutivo()
-    {
-        return $this->idestadoEvolutivo;
-    }
-
-    /**
-     * Add idfactorRiesgo
-     *
-     * @param \CardioBundle\Entity\FactorRiesgo $idfactorRiesgo
-     * @return Ficha
-     */
-    public function addIdfactorRiesgo(\CardioBundle\Entity\FactorRiesgo $idfactorRiesgo)
-    {
-        $this->idfactorRiesgo[] = $idfactorRiesgo;
-
-        return $this;
-    }
-
-    /**
-     * Remove idfactorRiesgo
-     *
-     * @param \CardioBundle\Entity\FactorRiesgo $idfactorRiesgo
-     */
-    public function removeIdfactorRiesgo(\CardioBundle\Entity\FactorRiesgo $idfactorRiesgo)
-    {
-        $this->idfactorRiesgo->removeElement($idfactorRiesgo);
-    }
-
-    /**
-     * Get idfactorRiesgo
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdfactorRiesgo()
-    {
-        return $this->idfactorRiesgo;
-    }
-
-    /**
-     * Add idpaciente
-     *
-     * @param \CardioBundle\Entity\Paciente $idpaciente
-     * @return Ficha
-     */
-    public function addIdpaciente(\CardioBundle\Entity\Paciente $idpaciente)
-    {
-        $this->idpaciente[] = $idpaciente;
-
-        return $this;
-    }
-
-    /**
-     * Remove idpaciente
-     *
-     * @param \CardioBundle\Entity\Paciente $idpaciente
-     */
-    public function removeIdpaciente(\CardioBundle\Entity\Paciente $idpaciente)
-    {
-        $this->idpaciente->removeElement($idpaciente);
-    }
-
-    /**
-     * Get idpaciente
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdpaciente()
-    {
-        return $this->idpaciente;
-    }
-
-    /**
-     * Add idmedicacionAlta
-     *
-     * @param \CardioBundle\Entity\Medicacion $idmedicacionAlta
-     * @return Ficha
-     */
-    public function addIdmedicacionAltum(\CardioBundle\Entity\Medicacion $idmedicacionAlta)
-    {
-        $this->idmedicacionAlta[] = $idmedicacionAlta;
-
-        return $this;
-    }
-
-    /**
-     * Remove idmedicacionAlta
-     *
-     * @param \CardioBundle\Entity\Medicacion $idmedicacionAlta
-     */
-    public function removeIdmedicacionAltum(\CardioBundle\Entity\Medicacion $idmedicacionAlta)
-    {
-        $this->idmedicacionAlta->removeElement($idmedicacionAlta);
-    }
-
-    /**
-     * Get idmedicacionAlta
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdmedicacionAlta()
-    {
-        return $this->idmedicacionAlta;
-    }
-
-    /**
-     * Add idrxTorax
-     *
-     * @param \CardioBundle\Entity\RxTorax $idrxTorax
-     * @return Ficha
-     */
-    public function addIdrxTorax(\CardioBundle\Entity\RxTorax $idrxTorax)
-    {
-        $this->idrxTorax[] = $idrxTorax;
-
-        return $this;
-    }
-
-    /**
-     * Remove idrxTorax
-     *
-     * @param \CardioBundle\Entity\RxTorax $idrxTorax
-     */
-    public function removeIdrxTorax(\CardioBundle\Entity\RxTorax $idrxTorax)
-    {
-        $this->idrxTorax->removeElement($idrxTorax);
-    }
-
-    /**
-     * Get idrxTorax
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdrxTorax()
-    {
-        return $this->idrxTorax;
-    }
-
-    public function __toString()
-    {
-      return (string)$this->idficha;
     }
 }
