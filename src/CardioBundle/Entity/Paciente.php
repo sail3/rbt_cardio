@@ -59,7 +59,7 @@ class Paciente
     /**
      * @var string
      *
-     * @ORM\Column(name="genero", type="string", length=6, nullable=true)
+     * @ORM\Column(name="genero", type="string", length=50, nullable=true)
      */
     private $genero;
 
@@ -92,27 +92,20 @@ class Paciente
     private $fechaRegistro;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var string
      *
-     * @ORM\ManyToMany(targetEntity="Ficha", mappedBy="idpaciente")
+     * @ORM\Column(name="ocupacion", type="string", length=100, nullable=true)
      */
-    private $idficha;
+    private $ocupacion;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idficha = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 
     /**
      * Get idpaciente
      *
-     * @return integer 
+     * @return integer
      */
-    public function getIdpaciente()
+    public function getId()
     {
         return $this->idpaciente;
     }
@@ -133,7 +126,7 @@ class Paciente
     /**
      * Get historia
      *
-     * @return string 
+     * @return string
      */
     public function getHistoria()
     {
@@ -156,7 +149,7 @@ class Paciente
     /**
      * Get dni
      *
-     * @return string 
+     * @return string
      */
     public function getDni()
     {
@@ -179,7 +172,7 @@ class Paciente
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -202,7 +195,7 @@ class Paciente
     /**
      * Get paterno
      *
-     * @return string 
+     * @return string
      */
     public function getPaterno()
     {
@@ -225,7 +218,7 @@ class Paciente
     /**
      * Get materno
      *
-     * @return string 
+     * @return string
      */
     public function getMaterno()
     {
@@ -248,7 +241,7 @@ class Paciente
     /**
      * Get genero
      *
-     * @return string 
+     * @return string
      */
     public function getGenero()
     {
@@ -271,7 +264,7 @@ class Paciente
     /**
      * Get fechaNacimiento
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaNacimiento()
     {
@@ -294,7 +287,7 @@ class Paciente
     /**
      * Get telefono
      *
-     * @return string 
+     * @return string
      */
     public function getTelefono()
     {
@@ -317,7 +310,7 @@ class Paciente
     /**
      * Get activo
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getActivo()
     {
@@ -340,7 +333,7 @@ class Paciente
     /**
      * Get fechaRegistro
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaRegistro()
     {
@@ -348,35 +341,25 @@ class Paciente
     }
 
     /**
-     * Add idficha
+     * Set ocupacion
      *
-     * @param \CardioBundle\Entity\Ficha $idficha
+     * @param string $ocupacion
      * @return Paciente
      */
-    public function addIdficha(\CardioBundle\Entity\Ficha $idficha)
+    public function setOcupacion($ocupacion)
     {
-        $this->idficha[] = $idficha;
+        $this->ocupacion = $ocupacion;
 
         return $this;
     }
 
     /**
-     * Remove idficha
+     * Get ocupacion
      *
-     * @param \CardioBundle\Entity\Ficha $idficha
+     * @return string
      */
-    public function removeIdficha(\CardioBundle\Entity\Ficha $idficha)
+    public function getOcupacion()
     {
-        $this->idficha->removeElement($idficha);
-    }
-
-    /**
-     * Get idficha
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getIdficha()
-    {
-        return $this->idficha;
+        return $this->ocupacion;
     }
 }

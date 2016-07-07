@@ -25,7 +25,7 @@ class PacienteType extends AbstractType
             ->add('telefono')
             ->add('activo')
             ->add('fechaRegistro', 'datetime')
-            ->add('idficha')
+            ->add('ocupacion')
         ;
     }
     

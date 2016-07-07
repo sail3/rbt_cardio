@@ -2,15 +2,141 @@
 
 {% block body %}
     <h1>Paciente creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    {{ form_start(form,{'attr':{
+    'class' : 'form-horizontal'
+    } }) }}
+    {{ form_errors(form) }}
+    <div class="panel-body">
+      <div class="form-group">
+        {{ form_label(form.historia, "Historia Clinica", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.historia, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form_label(form.dni, "Nro. DNI", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.dni, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form_label(form.nombre, "Nombre", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.nombre, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form_label(form.paterno, "Apellido Paterno", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.paterno, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form_label(form.materno, "Apelldio Materno", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.materno, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form_label(form.genero, "Sexo", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.genero, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form_label(form.fechaNacimiento, "Fecha Nacimiento", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.fechaNacimiento, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form_label(form.telefono, "Telefono", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.telefono, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form_label(form.activo, "Activo", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.activo, {'attr':{
+        'class' : 'form-control input-sm',
+        'data-switchery' : 'true',
+        'style' : "display: none;"
+        } }) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form_label(form.fechaRegistro, "Fecha Registro", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.fechaRegistro, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form_label(form.ocupacion, "Ocupacion", {'label_attr' : {
+        'class' : 'col-sm-3 control-label'
+        } }) }}
+        <div class="col-sm-6">
+          {{ form_widget(form.ocupacion, {'attr':{
+        'class' : 'form-control input-sm'
+        } }) }}
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3">
+          <button class="btn btn-info" type="submit">Crear</button>
+          <a href="{{ path('paciente_index') }}">
+            <button class="btn btn-warning" type="button">Volver a la lista</button>
+          </a>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3"></div>
+      </div>
+    </div>
     {{ form_end(form) }}
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('paciente_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block script_region %}
+<script type="text/javascript">
+new Switchery(document.getElementById('paciente_activo'), { size: 'large' });
+
+</script>
 {% endblock %}

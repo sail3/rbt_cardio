@@ -2,62 +2,198 @@
 
 {% block body %}
     <h1>Paciente</h1>
+    <div class="col-lg-6">
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">Detalle</h3>
+        </div>
 
-    <table>
+        <div class="panel-body">
+    <table class="table table-hover table-vcenter">
         <tbody>
             <tr>
-                <th>Idpaciente</th>
-                <td>{{ paciente.idpaciente }}</td>
+              <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Idpaciente</span>
+            </td>
+            <td class="text-center">
+              <span class="text">{{ paciente.id }}</span>
+            </td>
             </tr>
             <tr>
-                <th>Historia</th>
-                <td>{{ paciente.historia }}</td>
+              <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Historia</span>
+            </td>
+            <td class="text-center">
+              <span class="text">{{ paciente.historia }}</span>
+            </td>
             </tr>
             <tr>
-                <th>Dni</th>
-                <td>{{ paciente.dni }}</td>
+              <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Dni</span>
+            </td>
+            <td class="text-center">
+              <span class="text">{{ paciente.dni }}</span>
+            </td>
             </tr>
             <tr>
-                <th>Nombre</th>
-                <td>{{ paciente.nombre }}</td>
+              <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Nombre</span>
+            </td>
+            <td class="text-center">
+              <span class="text">{{ paciente.nombre }}</span>
+            </td>
             </tr>
             <tr>
-                <th>Paterno</th>
-                <td>{{ paciente.paterno }}</td>
+              <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Paterno</span>
+            </td>
+            <td class="text-center">
+              <span class="text">{{ paciente.paterno }}</span>
+            </td>
             </tr>
             <tr>
-                <th>Materno</th>
-                <td>{{ paciente.materno }}</td>
+              <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Materno</span>
+            </td>
+            <td class="text-center">
+              <span class="text">{{ paciente.materno }}</span>
+            </td>
             </tr>
             <tr>
-                <th>Genero</th>
-                <td>{{ paciente.genero }}</td>
+              <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Genero</span>
+            </td>
+            <td class="text-center">
+              <span class="text">{{ paciente.genero }}</span>
+            </td>
             </tr>
             <tr>
-                <th>Fechanacimiento</th>
-                <td>{% if paciente.fechaNacimiento %}{{ paciente.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
+              <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Fechanacimiento</span>
+            </td>
+            <td class="text-center">
+              <span class="text">{% if paciente.fechaNacimiento %}{{ paciente.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}</span>
+            </td>
             </tr>
             <tr>
-                <th>Telefono</th>
-                <td>{{ paciente.telefono }}</td>
+              <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Telefono</span>
+            </td>
+            <td class="text-center">
+              <span class="text">{{ paciente.telefono }}</span>
+            </td>
             </tr>
             <tr>
-                <th>Activo</th>
-                <td>{% if paciente.activo %}Yes{% else %}No{% endif %}</td>
+              <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Activo</span>
+            </td>
+            <td class="text-center">
+              <span class="text">{% if paciente.activo %}Yes{% else %}No{% endif %}</span>
+            </td>
             </tr>
             <tr>
-                <th>Fecharegistro</th>
-                <td>{% if paciente.fechaRegistro %}{{ paciente.fechaRegistro|date('Y-m-d H:i:s') }}{% endif %}</td>
+              <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Fecharegistro</span>
+            </td>
+            <td class="text-center">
+              <span class="text">{% if paciente.fechaRegistro %}{{ paciente.fechaRegistro|date('Y-m-d H:i:s') }}{% endif %}</span>
+            </td>
+            </tr>
+            <tr>
+              <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Ocupacion</span>
+            </td>
+            <td class="text-center">
+              <span class="text">{{ paciente.ocupacion }}</span>
+            </td>
             </tr>
         </tbody>
     </table>
 
+  </div>
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-3">
+        <a href="{{ path('paciente_edit', {'id': paciente.id }) }}">
+          <button class="btn btn-info" type="submit">Editar</button>
+        </a>
+        <a href="{{ path('paciente_index') }}">
+          <button class="btn btn-warning" type="button">Volver</button>
+        </a>
+          <!-- {{ form_start(delete_form) }}
+          <button class="btn btn-danger" type="submit">Eliminar</button>
+          {{ form_end(delete_form) }} -->
+      </div>
+    </div>
+  </div>
+</div>
+</div>
     <ul>
         <li>
             <a href="{{ path('paciente_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('paciente_edit', { 'id': paciente.idpaciente }) }}">Edit</a>
+            <a href="{{ path('paciente_edit', { 'id': paciente.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

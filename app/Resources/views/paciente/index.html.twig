@@ -3,10 +3,9 @@
 {% block body %}
     <h1>Paciente list</h1>
 
-    <table>
+    <table class="table table-hover table-vcenter">
         <thead>
             <tr>
-                <th>Idpaciente</th>
                 <th>Historia</th>
                 <th>Dni</th>
                 <th>Nombre</th>
@@ -17,13 +16,13 @@
                 <th>Telefono</th>
                 <th>Activo</th>
                 <th>Fecharegistro</th>
+                <th>Ocupacion</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for paciente in pacientes %}
             <tr>
-                <td><a href="{{ path('paciente_show', { 'id': paciente.idpaciente }) }}">{{ paciente.idpaciente }}</a></td>
                 <td>{{ paciente.historia }}</td>
                 <td>{{ paciente.dni }}</td>
                 <td>{{ paciente.nombre }}</td>
@@ -34,14 +33,19 @@
                 <td>{{ paciente.telefono }}</td>
                 <td>{% if paciente.activo %}Yes{% else %}No{% endif %}</td>
                 <td>{% if paciente.fechaRegistro %}{{ paciente.fechaRegistro|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ paciente.ocupacion }}</td>
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('paciente_show', { 'id': paciente.idpaciente }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('paciente_edit', { 'id': paciente.idpaciente }) }}">edit</a>
-                        </li>
+                      <li>
+                        <a href="{{ path('paciente_show', { 'id': paciente.id }) }}">
+                          <div class="label label-table label-info">Ver Detalles</div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ path('paciente_edit', { 'id': paciente.id }) }}">
+                          <div class="label label-table label-warning">Modificar</div>
+                        </a>
+                      </li>
                     </ul>
                 </td>
             </tr>
@@ -49,9 +53,10 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('paciente_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <a href="{{ path('paciente_new') }}">
+      <span class="btn btn-success fileinput-button dz-clickable">
+        <i class="fa fa-plus"></i>
+        <span>Agregar nuevo elemento</span>
+      </span>
+    </a>
 {% endblock %}
