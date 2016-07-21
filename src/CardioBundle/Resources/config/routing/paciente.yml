@@ -22,3 +22,8 @@ paciente_delete:
     path:     /{id}/delete
     defaults: { _controller: "CardioBundle:Paciente:delete" }
     methods:  DELETE
+
+paciente_search:
+    path:     /search
+    defaults: { _controller: "CardioBundle:Paciente:search" }
+    methods:  [GET, POST]

@@ -5,6 +5,8 @@ namespace CardioBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class FichaType extends AbstractType
 {
@@ -15,7 +17,7 @@ class FichaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fechaIngreso','text')
+            ->add('fechaIngreso', 'datetime')
             ->add('motivoHospitalizacion')
             ->add('fallaCardiaca')
             ->add('fallaCardiacaEtiologia')
@@ -24,9 +26,54 @@ class FichaType extends AbstractType
             ->add('fraccionEyeccion')
             ->add('tapse')
             ->add('altaMotivo')
-            ->add('altaFecha', 'text')
+            ->add('altaFecha', 'datetime')
             ->add('altaDescripcion')
             ->add('anotaciones')
+            ->add('idcausaDescompensante', 'entity', array(
+              'class' => 'CardioBundle\Entity\CausaDescompensante',
+              'expanded' => true,
+              'multiple' => true,
+              'required' => false,
+            ))
+            // ->add('idestadoEvolutivo', 'entity', array(
+            //   'class' => 'CardioBundle\Entity\EstadoEvolutivo',
+            //   'expanded' => true,
+            //   'multiple' => true,
+            //   'required' => false,
+            // ))
+            ->add('idfactorRiesgo', 'entity', array(
+              'class' => 'CardioBundle\Entity\FactorRiesgo',
+              'expanded' => true,
+              'multiple' => true,
+              'required' => false,
+            ))
+            ->add('idmedicacionAlta', 'entity', array(
+              'class' => 'CardioBundle\Entity\Medicacion',
+              'expanded' => true,
+              'multiple' => true,
+              'required' => false,
+            ))
+            ->add('idrxTorax', 'entity', array(
+              'class' => 'CardioBundle\Entity\RxTorax',
+              'expanded' => true,
+              'multiple' => true,
+              'required' => false,
+            ))
+            // ->add('idcausaDescompensante', 'entity', array(
+            //   'entry_type' => ChoiceType::class
+            // ))
+            // ->add('idestadoEvolutivo', CollectionType::class, array(
+            //   'entry_type' => ChoiceType::class
+            // ))
+            // ->add('idfactorRiesgo', CollectionType::class, array(
+            //   'entry_type' => ChoiceType::class
+            // ))
+            // ->add('idmedicacionAlta', CollectionType::class, array(
+            //   'entry_type' => ChoiceType::class
+            // ))
+            // ->add('idrxTorax', CollectionType::class, array(
+            //   'entry_type' => ChoiceType::class
+            // ))
         ;
     }
 

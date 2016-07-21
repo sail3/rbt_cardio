@@ -57,9 +57,9 @@ class Paciente
     private $materno;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="genero", type="string", length=50, nullable=true)
+     * @ORM\Column(name="genero", type="boolean", nullable=true)
      */
     private $genero;
 
@@ -228,7 +228,7 @@ class Paciente
     /**
      * Set genero
      *
-     * @param string $genero
+     * @param boolean $genero
      * @return Paciente
      */
     public function setGenero($genero)
@@ -241,7 +241,7 @@ class Paciente
     /**
      * Get genero
      *
-     * @return string
+     * @return boolean
      */
     public function getGenero()
     {
@@ -361,5 +361,10 @@ class Paciente
     public function getOcupacion()
     {
         return $this->ocupacion;
+    }
+
+    public function __tostring()
+    {
+      return $this->getNombre();
     }
 }

@@ -22,39 +22,25 @@ class RxTorax
     private $idrxTorax;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="congestion_pulmonar", type="boolean", nullable=false)
+     * @ORM\Column(name="nombre", type="string", length=60, nullable=false)
      */
-    private $congestionPulmonar;
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="text", nullable=true)
+     */
+    private $descripcion;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="derrame_pulmonar", type="boolean", nullable=false)
+     * @ORM\Column(name="enable", type="boolean", nullable=false)
      */
-    private $derramePulmonar;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="derrame_pericardico", type="boolean", nullable=false)
-     */
-    private $derramePericardico;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="cardiomegalia", type="boolean", nullable=false)
-     */
-    private $cardiomegalia;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="neumonia", type="boolean", nullable=false)
-     */
-    private $neumonia;
+    private $enable;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -83,126 +69,80 @@ class RxTorax
     /**
      * Get idrxTorax
      *
-     * @return integer 
+     * @return integer
      */
-    public function getIdrxTorax()
+    public function getId()
     {
         return $this->idrxTorax;
     }
 
     /**
-     * Set congestionPulmonar
+     * Set nombre
      *
-     * @param boolean $congestionPulmonar
+     * @param string $nombre
      * @return RxTorax
      */
-    public function setCongestionPulmonar($congestionPulmonar)
+    public function setNombre($nombre)
     {
-        $this->congestionPulmonar = $congestionPulmonar;
+        $this->nombre = $nombre;
 
         return $this;
     }
 
     /**
-     * Get congestionPulmonar
+     * Get nombre
      *
-     * @return boolean 
+     * @return string
      */
-    public function getCongestionPulmonar()
+    public function getNombre()
     {
-        return $this->congestionPulmonar;
+        return $this->nombre;
     }
 
     /**
-     * Set derramePulmonar
+     * Set descripcion
      *
-     * @param boolean $derramePulmonar
+     * @param string $descripcion
      * @return RxTorax
      */
-    public function setDerramePulmonar($derramePulmonar)
+    public function setDescripcion($descripcion)
     {
-        $this->derramePulmonar = $derramePulmonar;
+        $this->descripcion = $descripcion;
 
         return $this;
     }
 
     /**
-     * Get derramePulmonar
+     * Get descripcion
      *
-     * @return boolean 
+     * @return string
      */
-    public function getDerramePulmonar()
+    public function getDescripcion()
     {
-        return $this->derramePulmonar;
+        return $this->descripcion;
     }
 
     /**
-     * Set derramePericardico
+     * Set enable
      *
-     * @param boolean $derramePericardico
+     * @param boolean $enable
      * @return RxTorax
      */
-    public function setDerramePericardico($derramePericardico)
+    public function setEnable($enable)
     {
-        $this->derramePericardico = $derramePericardico;
+        $this->enable = $enable;
 
         return $this;
     }
 
     /**
-     * Get derramePericardico
+     * Get enable
      *
-     * @return boolean 
+     * @return boolean
      */
-    public function getDerramePericardico()
+    public function getEnable()
     {
-        return $this->derramePericardico;
-    }
-
-    /**
-     * Set cardiomegalia
-     *
-     * @param boolean $cardiomegalia
-     * @return RxTorax
-     */
-    public function setCardiomegalia($cardiomegalia)
-    {
-        $this->cardiomegalia = $cardiomegalia;
-
-        return $this;
-    }
-
-    /**
-     * Get cardiomegalia
-     *
-     * @return boolean 
-     */
-    public function getCardiomegalia()
-    {
-        return $this->cardiomegalia;
-    }
-
-    /**
-     * Set neumonia
-     *
-     * @param boolean $neumonia
-     * @return RxTorax
-     */
-    public function setNeumonia($neumonia)
-    {
-        $this->neumonia = $neumonia;
-
-        return $this;
-    }
-
-    /**
-     * Get neumonia
-     *
-     * @return boolean 
-     */
-    public function getNeumonia()
-    {
-        return $this->neumonia;
+        return $this->enable;
     }
 
     /**
@@ -231,10 +171,15 @@ class RxTorax
     /**
      * Get idficha
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdficha()
     {
         return $this->idficha;
+    }
+
+    public function __tostring()
+    {
+      return $this->getNombre();
     }
 }

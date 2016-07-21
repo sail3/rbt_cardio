@@ -1,76 +1,213 @@
 {% extends 'base.html.twig' %}
-
+{% block page_title %}
+  <h1>Ficha | Detalle</h1>
+{% endblock %}
 {% block body %}
-    <h1>Ficha</h1>
+  <div class="col-lg-6">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Detalle</h3>
+      </div>
 
-    <table>
-        <tbody>
+      <div class="panel-body">
+        <table class="table table-hover table-vcenter">
+          <tbody>
             <tr>
-                <th>Idficha</th>
-                <td>{{ ficha.id }}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Codigo Ficha</span>
+              </td>
+              <td class="text-center">
+                <span class="text">{{ ficha.id }}</span>
+              </td>
             </tr>
             <tr>
-                <th>Fechaingreso</th>
-                <td>{% if ficha.fechaIngreso %}{{ ficha.fechaIngreso|date('Y-m-d H:i:s') }}{% endif %}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Fecha Ingreso</span>
+              </td>
+              <td class="text-center">
+                <span class="text">{% if ficha.fechaIngreso %}{{ ficha.fechaIngreso|date('Y-m-d H:i:s') }}{% endif %}</span>
+              </td>
             </tr>
             <tr>
-                <th>Motivohospitalizacion</th>
-                <td>{{ ficha.motivoHospitalizacion }}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Motivo Hospitalizacion</span>
+              </td>
+              <td class="text-center">
+                <span class="text">{{ ficha.motivoHospitalizacion }}</span>
+              </td>
             </tr>
             <tr>
-                <th>Fallacardiaca</th>
-                <td>{% if ficha.fallaCardiaca %}Yes{% else %}No{% endif %}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Falla Cardiaca</span>
+              </td>
+              <td class="text-center">
+                <span class="text">{% if ficha.fallaCardiaca %}Yes{% else %}No{% endif %}</span>
+              </td>
             </tr>
             <tr>
-                <th>Fallacardiacaetiologia</th>
-                <td>{{ ficha.fallaCardiacaEtiologia }}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Fallacardiacaetiologia</span>
+              </td>
+              <td class="text-center">
+                <span class="text">{{ ficha.fallaCardiacaEtiologia }}</span>
+              </td>
             </tr>
             <tr>
-                <th>Nyhaingreso</th>
-                <td>{{ ficha.nyhaIngreso }}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">NyhaIngreso</span>
+              </td>
+              <td class="text-center">
+                <span class="text">{{ ficha.nyhaIngreso }}</span>
+              </td>
             </tr>
             <tr>
-                <th>Sindromecardiorenal</th>
-                <td>{{ ficha.sindromeCardiorenal }}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Sindrome Cardiorenal</span>
+              </td>
+              <td class="text-center">
+                <span class="text">
+                  {{ ficha.sindromeCardiorenal }}
+                </span>
+              </td>
             </tr>
             <tr>
-                <th>Fraccioneyeccion</th>
-                <td>{{ ficha.fraccionEyeccion }}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Fraccion de Eyeccion</span>
+              </td>
+              <td class="text-center">
+                <span class="text">{{ ficha.fraccionEyeccion }}</span>
+              </td>
             </tr>
             <tr>
-                <th>Tapse</th>
-                <td>{{ ficha.tapse }}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Tapse</span>
+              </td>
+              <td class="text-center">
+                <span class="text">
+                  {{ ficha.tapse }}
+                </span>
+              </td>
             </tr>
             <tr>
-                <th>Altamotivo</th>
-                <td>{{ ficha.altaMotivo }}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Alta Motivo</span>
+              </td>
+              <td class="text-center">
+                <span class="text">
+                  {{ ficha.altaMotivo }}
+                </span>
+              </td>
             </tr>
             <tr>
-                <th>Altafecha</th>
-                <td>{% if ficha.altaFecha %}{{ ficha.altaFecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Alta Fecha</span>
+              </td>
+              <td class="text-center">
+                <span class="text">{% if ficha.altaFecha %}{{ ficha.altaFecha|date('Y-m-d H:i:s') }}{% endif %}</span>
+              </td>
             </tr>
             <tr>
-                <th>Altadescripcion</th>
-                <td>{{ ficha.altaDescripcion }}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Alta Descripcion</span>
+              </td>
+              <td class="text-center">
+                <span class="text">{{ ficha.altaDescripcion }}</span>
+              </td>
             </tr>
             <tr>
-                <th>Anotaciones</th>
-                <td>{{ ficha.anotaciones }}</td>
+              <td class="text-center">
+                <span>
+                  <i class="fa fa-plus fa-lg"></i>
+                </span>
+              </td>
+              <td>
+                <span class="text-semibold">Anotaciones</span>
+              </td>
+              <td class="text-center">
+                <span class="text">{{ ficha.anotaciones }}</span>
+              </td>
             </tr>
-        </tbody>
-    </table>
+          </tbody>
+        </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('ficha_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('ficha_edit', { 'id': ficha.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+      </div>
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-sm-9 col-sm-offset-3">
+            <a href="{{ path('ficha_edit', {'id': ficha.id }) }}">
+              <button class="btn btn-info" type="submit">Editar</button>
+            </a>
+            <a href="{{ path('ficha_index') }}">
+              <button class="btn btn-warning" type="button">Volver</button>
+            </a>
+            <!-- {{ form_start(delete_form) }}
+      <button class="btn btn-danger" type="submit">Eliminar</button>
+      {{ form_end(delete_form) }} -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 {% endblock %}

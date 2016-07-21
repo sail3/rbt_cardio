@@ -38,9 +38,23 @@ class EstadoEvolutivo
     /**
      * @var string
      *
+     * @ORM\Column(name="urea", type="string", length=45, nullable=true)
+     */
+    private $urea;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="sodio", type="string", length=45, nullable=true)
      */
     private $sodio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="potasio", type="string", length=45, nullable=true)
+     */
+    private $potasio;
 
     /**
      * @var string
@@ -52,6 +66,13 @@ class EstadoEvolutivo
     /**
      * @var string
      *
+     * @ORM\Column(name="plaquetas", type="string", length=45, nullable=true)
+     */
+    private $plaquetas;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="vmc", type="string", length=45, nullable=true)
      */
     private $vmc;
@@ -59,9 +80,16 @@ class EstadoEvolutivo
     /**
      * @var string
      *
-     * @ORM\Column(name="rdw", type="string", length=45, nullable=true)
+     * @ORM\Column(name="hmc", type="string", length=45, nullable=true)
      */
-    private $rdw;
+    private $hmc;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rdw_cv", type="string", length=45, nullable=true)
+     */
+    private $rdwCv;
 
     /**
      * @var string
@@ -94,9 +122,23 @@ class EstadoEvolutivo
     /**
      * @var string
      *
+     * @ORM\Column(name="cpk_mb", type="string", length=45, nullable=true)
+     */
+    private $cpkMb;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="tgp", type="string", length=45, nullable=true)
      */
     private $tgp;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="albumina", type="string", length=45, nullable=true)
+     */
+    private $albumina;
 
     /**
      * @var string
@@ -139,9 +181,9 @@ class EstadoEvolutivo
     /**
      * Get idestadoEvolutivo
      *
-     * @return integer 
+     * @return integer
      */
-    public function getIdestadoEvolutivo()
+    public function getId()
     {
         return $this->idestadoEvolutivo;
     }
@@ -162,7 +204,7 @@ class EstadoEvolutivo
     /**
      * Get glucosa
      *
-     * @return string 
+     * @return string
      */
     public function getGlucosa()
     {
@@ -185,11 +227,34 @@ class EstadoEvolutivo
     /**
      * Get creatinina
      *
-     * @return string 
+     * @return string
      */
     public function getCreatinina()
     {
         return $this->creatinina;
+    }
+
+    /**
+     * Set urea
+     *
+     * @param string $urea
+     * @return EstadoEvolutivo
+     */
+    public function setUrea($urea)
+    {
+        $this->urea = $urea;
+
+        return $this;
+    }
+
+    /**
+     * Get urea
+     *
+     * @return string
+     */
+    public function getUrea()
+    {
+        return $this->urea;
     }
 
     /**
@@ -208,11 +273,34 @@ class EstadoEvolutivo
     /**
      * Get sodio
      *
-     * @return string 
+     * @return string
      */
     public function getSodio()
     {
         return $this->sodio;
+    }
+
+    /**
+     * Set potasio
+     *
+     * @param string $potasio
+     * @return EstadoEvolutivo
+     */
+    public function setPotasio($potasio)
+    {
+        $this->potasio = $potasio;
+
+        return $this;
+    }
+
+    /**
+     * Get potasio
+     *
+     * @return string
+     */
+    public function getPotasio()
+    {
+        return $this->potasio;
     }
 
     /**
@@ -231,11 +319,34 @@ class EstadoEvolutivo
     /**
      * Get hb
      *
-     * @return string 
+     * @return string
      */
     public function getHb()
     {
         return $this->hb;
+    }
+
+    /**
+     * Set plaquetas
+     *
+     * @param string $plaquetas
+     * @return EstadoEvolutivo
+     */
+    public function setPlaquetas($plaquetas)
+    {
+        $this->plaquetas = $plaquetas;
+
+        return $this;
+    }
+
+    /**
+     * Get plaquetas
+     *
+     * @return string
+     */
+    public function getPlaquetas()
+    {
+        return $this->plaquetas;
     }
 
     /**
@@ -254,7 +365,7 @@ class EstadoEvolutivo
     /**
      * Get vmc
      *
-     * @return string 
+     * @return string
      */
     public function getVmc()
     {
@@ -262,26 +373,49 @@ class EstadoEvolutivo
     }
 
     /**
-     * Set rdw
+     * Set hmc
      *
-     * @param string $rdw
+     * @param string $hmc
      * @return EstadoEvolutivo
      */
-    public function setRdw($rdw)
+    public function setHmc($hmc)
     {
-        $this->rdw = $rdw;
+        $this->hmc = $hmc;
 
         return $this;
     }
 
     /**
-     * Get rdw
+     * Get hmc
      *
-     * @return string 
+     * @return string
      */
-    public function getRdw()
+    public function getHmc()
     {
-        return $this->rdw;
+        return $this->hmc;
+    }
+
+    /**
+     * Set rdwCv
+     *
+     * @param string $rdwCv
+     * @return EstadoEvolutivo
+     */
+    public function setRdwCv($rdwCv)
+    {
+        $this->rdwCv = $rdwCv;
+
+        return $this;
+    }
+
+    /**
+     * Get rdwCv
+     *
+     * @return string
+     */
+    public function getRdwCv()
+    {
+        return $this->rdwCv;
     }
 
     /**
@@ -300,7 +434,7 @@ class EstadoEvolutivo
     /**
      * Get leucocitos
      *
-     * @return string 
+     * @return string
      */
     public function getLeucocitos()
     {
@@ -323,7 +457,7 @@ class EstadoEvolutivo
     /**
      * Get neutro
      *
-     * @return string 
+     * @return string
      */
     public function getNeutro()
     {
@@ -346,7 +480,7 @@ class EstadoEvolutivo
     /**
      * Get linfocitos
      *
-     * @return string 
+     * @return string
      */
     public function getLinfocitos()
     {
@@ -369,11 +503,34 @@ class EstadoEvolutivo
     /**
      * Get troponina
      *
-     * @return string 
+     * @return string
      */
     public function getTroponina()
     {
         return $this->troponina;
+    }
+
+    /**
+     * Set cpkMb
+     *
+     * @param string $cpkMb
+     * @return EstadoEvolutivo
+     */
+    public function setCpkMb($cpkMb)
+    {
+        $this->cpkMb = $cpkMb;
+
+        return $this;
+    }
+
+    /**
+     * Get cpkMb
+     *
+     * @return string
+     */
+    public function getCpkMb()
+    {
+        return $this->cpkMb;
     }
 
     /**
@@ -392,11 +549,34 @@ class EstadoEvolutivo
     /**
      * Get tgp
      *
-     * @return string 
+     * @return string
      */
     public function getTgp()
     {
         return $this->tgp;
+    }
+
+    /**
+     * Set albumina
+     *
+     * @param string $albumina
+     * @return EstadoEvolutivo
+     */
+    public function setAlbumina($albumina)
+    {
+        $this->albumina = $albumina;
+
+        return $this;
+    }
+
+    /**
+     * Get albumina
+     *
+     * @return string
+     */
+    public function getAlbumina()
+    {
+        return $this->albumina;
     }
 
     /**
@@ -415,7 +595,7 @@ class EstadoEvolutivo
     /**
      * Get proBnp
      *
-     * @return string 
+     * @return string
      */
     public function getProBnp()
     {
@@ -438,7 +618,7 @@ class EstadoEvolutivo
     /**
      * Get lactato
      *
-     * @return string 
+     * @return string
      */
     public function getLactato()
     {
@@ -471,10 +651,15 @@ class EstadoEvolutivo
     /**
      * Get idficha
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIdficha()
     {
         return $this->idficha;
+    }
+    
+    public function __tostring()
+    {
+      return $this->getNombre();
     }
 }

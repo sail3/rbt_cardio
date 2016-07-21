@@ -1,21 +1,508 @@
 {% extends 'base.html.twig' %}
+{% block page_title %}
+  <h1>Ficha | Editar
+{% endblock %}
 
 {% block body %}
-    <h1>Ficha edit</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+  <div class="panel">
 
-    <ul>
-        <li>
-            <a href="{{ path('ficha_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="row">
+      <div class="col-lg-6"></div>
+
+      <!-- Circular Form Wizard -->
+      <!--===================================================-->
+      <div id="demo-cir-wz">
+        <div class="wz-heading">
+
+          <!--Progress bar-->
+          <div class="progress progress-sm progress-light-base">
+            <div class="progress-bar progress-bar-primary"></div>
+          </div>
+
+          <!--Nav-->
+          <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+          <ul class="wz-nav-off ">
+            <li class="col-xs-2">
+              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab1" title="Datos de Paciente" class="add-tooltip">
+                <span class="icon-wrap icon-wrap-sm icon-circle bg-mint">
+                  <i class="wz-icon fa fa-user fa-2x"></i>
+                  <i class="wz-icon-done fa fa-check fa-2x"></i>
+                </span>
+              </a>
+            </li>
+            <li class="col-xs-2">
+              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab2" title="Ficha" class="add-tooltip">
+                <span class="icon-wrap icon-wrap-sm icon-circle bg-info">
+                  <i class="wz-icon fa fa-info fa-2x"></i>
+                  <i class="wz-icon-done fa fa-check fa-2x"></i>
+                </span>
+              </a>
+            </li>
+            <li class="col-xs-2">
+              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab3" title="Causa Descompensante" class="add-tooltip">
+                <span class="icon-wrap icon-wrap-sm icon-circle bg-warning">
+                  <i class="wz-icon fa fa-info fa-2x"></i>
+                  <i class="wz-icon-done fa fa-check fa-2x"></i>
+                </span>
+              </a>
+            </li>
+            <li class="col-xs-2">
+              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab4" title="Factores de riesgo" class="add-tooltip">
+                <span class="icon-wrap icon-wrap-sm icon-circle bg-success">
+                  <i class="wz-icon fa fa-info fa-2x"></i>
+                  <i class="wz-icon-done fa fa-check fa-2x"></i>
+                </span>
+              </a>
+            </li>
+            <li class="col-xs-2">
+              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab5" title="Medicacion" class="add-tooltip">
+                <span class="icon-wrap icon-wrap-sm icon-circle bg-success">
+                  <i class="wz-icon fa fa-info fa-2x"></i>
+                  <i class="wz-icon-done fa fa-check fa-2x"></i>
+                </span>
+              </a>
+            </li>
+            <li class="col-xs-2">
+              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab6" title="Causas Descompensante" class="add-tooltip">
+                <span class="icon-wrap icon-wrap-sm icon-circle bg-success">
+                  <i class="wz-icon fa fa-info fa-2x"></i>
+                  <i class="wz-icon-done fa fa-check fa-2x"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!--Form-->
+        {{ form_start(edit_form,{'attr':{
+        'class' : 'form-horizontal'
+        } }) }}
+        {{ form_errors(edit_form) }}
+          <div class="panel-body">
+            <div class="tab-content">
+
+              <!--First tab-->
+              <div id="demo-cir-tab1" class="tab-pane fade">
+                {{ form_start(form_paciente,{'attr':{
+                'class' : 'form-horizontal'
+                } }) }}
+                {{ form_errors(form_paciente) }}
+                <div class="panel-body">
+                  <div class="form-group">
+                    {{ form_label(form_paciente.historia, "Historia Clinica", {'label_attr' : {
+                    'class' : 'col-sm-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(form_paciente.historia, {'attr':{
+                    'class' : 'form-control input-sm'
+                    } }) }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    {{ form_label(form_paciente.dni, "Nro. DNI", {'label_attr' : {
+                    'class' : 'col-sm-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(form_paciente.dni, {'attr':{
+                    'class' : 'form-control input-sm'
+                    } }) }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    {{ form_label(form_paciente.nombre, "Nombre", {'label_attr' : {
+                    'class' : 'col-sm-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(form_paciente.nombre, {'attr':{
+                    'class' : 'form-control input-sm'
+                    } }) }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    {{ form_label(form_paciente.paterno, "Apellido Paterno", {'label_attr' : {
+                    'class' : 'col-sm-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(form_paciente.paterno, {'attr':{
+                    'class' : 'form-control input-sm'
+                    } }) }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    {{ form_label(form_paciente.materno, "Apelldio Materno", {'label_attr' : {
+                    'class' : 'col-sm-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(form_paciente.materno, {'attr':{
+                    'class' : 'form-control input-sm'
+                    } }) }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    {{ form_label(form_paciente.genero, "Sexo", {'label_attr' : {
+                    'class' : 'col-sm-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(form_paciente.genero, {'attr':{
+                    'class' : 'form-control input-sm'
+                    } }) }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    {{ form_label(form_paciente.fechaNacimiento, "Fecha Nacimiento", {'label_attr' : {
+                    'class' : 'col-sm-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(form_paciente.fechaNacimiento, {'attr':{
+                    'class' : 'form-control input-sm'
+                    } }) }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    {{ form_label(form_paciente.telefono, "Telefono", {'label_attr' : {
+                    'class' : 'col-sm-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(form_paciente.telefono, {'attr':{
+                    'class' : 'form-control input-sm'
+                    } }) }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    {{ form_label(form_paciente.activo, "Activo", {'label_attr' : {
+                    'class' : 'col-sm-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(form_paciente.activo, {'attr':{
+                    'class' : 'form-control input-sm',
+                    'data-switchery' : 'true',
+                    'style' : "display: none;"
+                    } }) }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    {{ form_label(form_paciente.fechaRegistro, "Fecha Registro", {'label_attr' : {
+                    'class' : 'col-sm-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(form_paciente.fechaRegistro, {'attr':{
+                    'class' : 'form-control input-sm'
+                    } }) }}
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    {{ form_label(form_paciente.ocupacion, "Ocupacion", {'label_attr' : {
+                    'class' : 'col-sm-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(form_paciente.ocupacion, {'attr':{
+                    'class' : 'form-control input-sm'
+                    } }) }}
+                    </div>
+                  </div>
+                </div>
+                {{ form_end(form_paciente) }}
+              </div>
+
+              <!--Second tab-->
+              <div id="demo-cir-tab2" class="tab-pane">
+
+                <div class="form-group">
+                  {{ form_label(edit_form.fechaIngreso, "Fecha Ingreso", {'label_attr' : {
+                  'class' : 'col-sm-3 control-label'
+                  } }) }}
+                  <div class="col-sm-6">
+                    <div class='input-group date' id='seleccionafechaingreso'>
+                      {{ form_widget(edit_form.fechaIngreso, {'attr':{
+                  'class' : 'form-control'
+                  } }) }}
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(edit_form.motivoHospitalizacion, "Motivo Hospitalizacion", {'label_attr' : {
+                  'class' : 'col-sm-3 control-label'
+                  } }) }}
+                  <div class="col-sm-6">
+                    {{ form_widget(edit_form.motivoHospitalizacion, {'attr':{
+                  'class' : 'form-control input-sm'
+                  } }) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(edit_form.fallaCardiaca, "Falla Cardiaca", {'label_attr' : {
+                  'class' : 'col-sm-3 control-label'
+                  } }) }}
+                  <div class="col-sm-6">
+                    {{ form_widget(edit_form.fallaCardiaca, {'attr':{
+                  'class' : 'form-control input-sm',
+                  'data-switchery' : 'true',
+                  'style' : "display: none;"
+                  } }) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(edit_form.fallaCardiacaEtiologia, "Falla cardiaca etiologia", {'label_attr' : {
+                  'class' : 'col-sm-3 control-label'
+                  } }) }}
+                  <div class="col-sm-6">
+                    {{ form_widget(edit_form.fallaCardiacaEtiologia, {'attr':{
+                  'class' : 'form-control input-sm'
+                  } }) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(edit_form.nyhaIngreso, "NYH al Ingreso", {'label_attr' : {
+                  'class' : 'col-sm-3 control-label'
+                  } }) }}
+                  <div class="col-sm-6">
+                    {{ form_widget(edit_form.nyhaIngreso, {'attr':{
+                  'class' : 'form-control input-sm'
+                  } }) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(edit_form.sindromeCardiorenal, "Sindrome Cardio Renal", {'label_attr' : {
+                  'class' : 'col-sm-3 control-label'
+                  } }) }}
+                  <div class="col-sm-6">
+                    {{ form_widget(edit_form.sindromeCardiorenal, {'attr':{
+                  'class' : 'form-control input-sm'
+                  } }) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(edit_form.fraccionEyeccion, "Fraccion de Eyeccion", {'label_attr' : {
+                  'class' : 'col-sm-3 control-label'
+                  } }) }}
+                  <div class="col-sm-6">
+                    {{ form_widget(edit_form.fraccionEyeccion, {'attr':{
+                  'class' : 'form-control input-sm'
+                  } }) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(edit_form.tapse, "Tapse", {'label_attr' : {
+                  'class' : 'col-sm-3 control-label'
+                  } }) }}
+                  <div class="col-sm-6">
+                    {{ form_widget(edit_form.tapse, {'attr':{
+                  'class' : 'form-control input-sm'
+                  } }) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(edit_form.altaMotivo, "Motivo del alta", {'label_attr' : {
+                  'class' : 'col-sm-3 control-label'
+                  } }) }}
+                  <div class="col-sm-6">
+                    {{ form_widget(edit_form.altaMotivo, {'attr':{
+                  'class' : 'form-control input-sm'
+                  } }) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(edit_form.altaFecha, "Fecha Ingreso", {'label_attr' : {
+                  'class' : 'col-sm-3 control-label'
+                  } }) }}
+                  <div class="col-sm-6">
+                    <div class='input-group date' id='seleccionafechaalta'>
+                      {{ form_widget(edit_form.altaFecha, {'attr':{
+                  'class' : 'form-control'
+                  } }) }}
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(edit_form.altaDescripcion, "Descripcion del alta", {'label_attr' : {
+                  'class' : 'col-sm-3 control-label'
+                  } }) }}
+                  <div class="col-sm-6">
+                    {{ form_widget(edit_form.altaDescripcion, {'attr':{
+                  'class' : 'form-control input-sm'
+                  } }) }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(edit_form.anotaciones, "Anotaciones adicionales", {'label_attr' : {
+                  'class' : 'col-sm-3 control-label'
+                  } }) }}
+                  <div class="col-sm-6">
+                    {{ form_widget(edit_form.anotaciones, {'attr':{
+                  'class' : 'form-control input-sm'
+                  } }) }}
+                  </div>
+                </div>
+
+              </div>
+
+              <!--Second tab-->
+
+              <!--Third tab-->
+              <div id="demo-cir-tab3" class="tab-pane">
+                {% for medicacion in edit_form.idcausaDescompensante %}
+                  <div class="form-group">
+                    {{ form_label(medicacion, "", {'label_attr' : {
+                      'class' : 'col-sm-3 col-lg-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(medicacion, {'attr':{
+                        'class' : 'form-control input-sm',
+                        'data-switchery' : 'true',
+                        'style' : "display: none;"
+                      } }) }}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+
+
+              <!--Fourth tab-->
+              <div id="demo-cir-tab4" class="tab-pane">
+                {% for factor in edit_form.idfactorRiesgo %}
+                  <div class="form-group">
+                    {{ form_label(factor, "", {'label_attr' : {
+                      'class' : 'col-sm-3 col-lg-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(factor, {'attr':{
+                        'class' : 'form-control input-sm',
+                        'data-switchery' : 'true',
+                        'style' : "display: none;"
+                      } }) }}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+
+              <!--Fourth tab-->
+              <div id="demo-cir-tab5" class="tab-pane">
+                {% for medicacion in edit_form.idmedicacionAlta %}
+                  <div class="form-group">
+                    {{ form_label(medicacion, "", {'label_attr' : {
+                      'class' : 'col-sm-3 col-lg-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(medicacion, {'attr':{
+                        'class' : 'form-control input-sm',
+                        'data-switchery' : 'true',
+                        'style' : "display: none;"
+                      } }) }}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+              <div id="demo-cir-tab6" class="tab-pane">
+                <h2>Tab 06</h2>
+                {% for rxTorax in edit_form.idrxTorax %}
+                  <div class="form-group">
+                    {{ form_label(rxTorax, "", {'label_attr' : {
+                      'class' : 'col-sm-3 col-lg-3 control-label'
+                    } }) }}
+                    <div class="col-sm-6">
+                      {{ form_widget(rxTorax, {'attr':{
+                        'class' : 'form-control input-sm',
+                        'data-switchery' : 'true',
+                        'style' : "display: none;"
+                      } }) }}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+
+          </div>
+
+          <!--Footer button-->
+          <div class="panel-footer text-right">
+            <div class="box-inline">
+              <a href="{{ path('ficha_index') }}">
+              <button class="btn btn-danger" type="button">Cancelar</button>
+              </a>
+              <button type="button" class="previous btn btn-primary">Previous</button>
+              <button type="button" class="next btn btn-primary">Next</button>
+              <button type="submit" class="finish btn btn-success" disabled>Finish</button>
+            </div>
+          </div>
+        {{ form_end(edit_form) }}
+      </div>
+      <!--===================================================-->
+      <!-- End Circular Form Wizard -->
+
+    </div>
+
+  </div>
+
+{% endblock %}
+{% block script_region %}
+  <script src="{{ asset('plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"></script>
+  <script src="{{ asset('plugins/bootstrap-validator/bootstrapValidator.min.js') }}"></script>
+  <script src="{{ asset('plugins/bootstrap-datepicker/moment.js') }}"></script>
+  <script src="{{ asset('plugins/bootstrap-datepicker/bootstrap-datetimepicker.min.js') }}"></script>
+  <script type="text/javascript">
+    // CIRCULAR FORM WIZARD
+    // =================================================================
+    $('#demo-cir-wz').bootstrapWizard({
+      tabClass: 'wz-steps',
+      nextSelector: '.next',
+      previousSelector: '.previous',
+      onTabClick: function(tab, navigation, index) {
+        return false;
+      },
+      onInit: function() {
+        $('#demo-cir-wz').find('.finish').hide().prop('disabled', true);
+      },
+      onTabShow: function(tab, navigation, index) {
+        var $total = navigation.find('li').length;
+        var $current = index + 1;
+        var $percent = (index / $total) * 100;
+        var margin = (100 / $total) / 2;
+        $('#demo-cir-wz').find('.progress-bar').css({
+          width: $percent + '%',
+          'margin': 0 + 'px ' + margin + '%'
+        });
+
+        navigation.find('li:eq(' + index + ') a').trigger('focus');
+
+        // If it's the last tab then hide the last button and show the finish instead
+        if ($current >= $total) {
+          $('#demo-cir-wz').find('.next').hide();
+          $('#demo-cir-wz').find('.finish').show();
+          $('#demo-cir-wz').find('.finish').prop('disabled', false);
+          $('#ficha').submit();
+        } else {
+          $('#demo-cir-wz').find('.next').show();
+          $('#demo-cir-wz').find('.finish').hide().prop('disabled', true);
+        }
+      }
+    });
+
+    new Switchery(document.getElementById('ficha_fallaCardiaca'), {size: 'large'});
+    // Factores de riesgo en la ficha principal
+    {% for medicacion in edit_form.idmedicacionAlta %}
+      new Switchery(document.getElementById('{{medicacion.vars.id}}'), {size: 'large'});
+    {% endfor %}
+    {% for causa in edit_form.idcausaDescompensante %}
+      new Switchery(document.getElementById('{{causa.vars.id}}'), {size: 'large'});
+    {% endfor %}
+    {% for factor in edit_form.idfactorRiesgo %}
+      new Switchery(document.getElementById('{{factor.vars.id}}'), {size: 'large'});
+    {% endfor %}
+    {% for rxTorax in edit_form.idrxTorax %}
+      new Switchery(document.getElementById('{{rxTorax.vars.id}}'), {size: 'large'});
+    {% endfor %}
+
+
+
+    $(function() {
+      $('#seleccionafechaingreso').datetimepicker();
+      $('#seleccionafechaalta').datetimepicker();
+    });
+  </script>
 {% endblock %}

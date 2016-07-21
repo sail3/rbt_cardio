@@ -31,7 +31,7 @@ class Medicacion
     /**
      * @var string
      *
-     * @ORM\Column(name="descripcion", type="string", length=150, nullable=true)
+     * @ORM\Column(name="descripcion", type="text", nullable=true)
      */
     private $descripcion;
 
@@ -42,6 +42,28 @@ class Medicacion
      */
     private $enable;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Ficha", inversedBy="idmedicacionAlta")
+     * @ORM\JoinTable(name="medicacion_has_ficha",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="idmedicacion_alta", referencedColumnName="idmedicacion_alta")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="idficha", referencedColumnName="idficha")
+     *   }
+     * )
+     */
+    private $idficha;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idficha = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -121,5 +143,43 @@ class Medicacion
     public function getEnable()
     {
         return $this->enable;
+    }
+
+    /**
+     * Add idficha
+     *
+     * @param \CardioBundle\Entity\Ficha $idficha
+     * @return Medicacion
+     */
+    public function addIdficha(\CardioBundle\Entity\Ficha $idficha)
+    {
+        $this->idficha[] = $idficha;
+
+        return $this;
+    }
+
+    /**
+     * Remove idficha
+     *
+     * @param \CardioBundle\Entity\Ficha $idficha
+     */
+    public function removeIdficha(\CardioBundle\Entity\Ficha $idficha)
+    {
+        $this->idficha->removeElement($idficha);
+    }
+
+    /**
+     * Get idficha
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdficha()
+    {
+        return $this->idficha;
+    }
+
+    public function __tostring()
+    {
+      return $this->getNombre();
     }
 }

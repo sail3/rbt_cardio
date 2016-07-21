@@ -1,25 +1,24 @@
 cardio_causa:
     resource: "@CardioBundle/Resources/config/routing/causadescompensante.yml"
-    prefix:   /causa
+    prefix:   /admin/causa
 cardio_estado_evolutivo:
     resource: "@CardioBundle/Resources/config/routing/estadoevolutivo.yml"
-    prefix:   /estado-evolutivo
+    prefix:   /admin/estado-evolutivo
 cardio_factor_riesgo:
     resource: "@CardioBundle/Resources/config/routing/factorriesgo.yml"
-    prefix:   /factor-riesgo
+    prefix:   /admin/factor-riesgo
 cardio_ficha:
     resource: "@CardioBundle/Resources/config/routing/ficha.yml"
     prefix:   /ficha
 cardio_medicacion:
     resource: "@CardioBundle/Resources/config/routing/medicacion.yml"
-    prefix:   /medicacion
+    prefix:   /admin/medicacion
 cardio_paciente:
     resource: "@CardioBundle/Resources/config/routing/paciente.yml"
     prefix:   /paciente
 cardio_rx-torax:
     resource: "@CardioBundle/Resources/config/routing/rxtorax.yml"
-    prefix:   /paciente
-
+    prefix:   /admin/rx-torax
 cardio_homepage:
     path:     /
     defaults: { _controller: CardioBundle:Default:index }

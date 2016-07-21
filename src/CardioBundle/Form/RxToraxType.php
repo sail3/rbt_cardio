@@ -15,15 +15,12 @@ class RxToraxType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('congestionPulmonar')
-            ->add('derramePulmonar')
-            ->add('derramePericardico')
-            ->add('cardiomegalia')
-            ->add('neumonia')
-            ->add('idficha')
+            ->add('nombre')
+            ->add('descripcion')
+            ->add('enable')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

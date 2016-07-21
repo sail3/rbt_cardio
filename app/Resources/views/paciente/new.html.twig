@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
+{% block page_title %}
+    <h1>Paciente | Nuevo</h1>
+{% endblock %}
 
 {% block body %}
-    <h1>Paciente creation</h1>
     {{ form_start(form,{'attr':{
     'class' : 'form-horizontal'
     } }) }}

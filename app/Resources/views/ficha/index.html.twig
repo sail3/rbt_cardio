@@ -1,23 +1,21 @@
 {% extends 'base.html.twig' %}
-
+{% block page_title %}
+    <h1>Ficha | Listado</h1>
+{% endblock %}
 {% block body %}
-    <h1>Ficha list</h1>
 
-    <table>
+    <table class="table table-hover table-vcenter">
         <thead>
             <tr>
                 <th>Idficha</th>
                 <th>Fechaingreso</th>
-                <th>Motivohospitalizacion</th>
+                <th>Motivo de Hospitalizacion</th>
                 <th>Fallacardiaca</th>
-                <th>Fallacardiacaetiologia</th>
                 <th>Nyhaingreso</th>
-                <th>Sindromecardiorenal</th>
-                <th>Fraccioneyeccion</th>
+                <th>Sindrome cardiorenal</th>
+                <th>Fraccion de eyeccion</th>
                 <th>Tapse</th>
-                <th>Altamotivo</th>
-                <th>Altafecha</th>
-                <th>Altadescripcion</th>
+                <th>Alta</th>
                 <th>Anotaciones</th>
                 <th>Actions</th>
             </tr>
@@ -28,34 +26,53 @@
                 <td><a href="{{ path('ficha_show', { 'id': ficha.id }) }}">{{ ficha.id }}</a></td>
                 <td>{% if ficha.fechaIngreso %}{{ ficha.fechaIngreso|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ ficha.motivoHospitalizacion }}</td>
-                <td>{% if ficha.fallaCardiaca %}Yes{% else %}No{% endif %}</td>
-                <td>{{ ficha.fallaCardiacaEtiologia }}</td>
+                <td>
+                  <span class="text-semibold">
+                {% if ficha.fallaCardiaca %}Yes{% else %}No{% endif %}
+                  </span><br>
+                  <small class="text-muted">
+                {{ ficha.fallaCardiacaEtiologia }}
+                  </small>
+                </td>
                 <td>{{ ficha.nyhaIngreso }}</td>
                 <td>{{ ficha.sindromeCardiorenal }}</td>
                 <td>{{ ficha.fraccionEyeccion }}</td>
                 <td>{{ ficha.tapse }}</td>
-                <td>{{ ficha.altaMotivo }}</td>
-                <td>{% if ficha.altaFecha %}{{ ficha.altaFecha|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ ficha.altaDescripcion }}</td>
+                <td>
+                  <span class="text-semibold">
+                {{ ficha.altaMotivo }}
+                  </span><br>
+                  <small class="text-muted">
+                {% if ficha.altaFecha %}{{ ficha.altaFecha|date('Y-m-d H:i:s') }}{% endif %}
+              </small><br>
+                  <span class="text-semibold">
+                {{ ficha.altaDescripcion }}
+
+                  </span>
+                </td>
                 <td>{{ ficha.anotaciones }}</td>
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('ficha_show', { 'id': ficha.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('ficha_edit', { 'id': ficha.id }) }}">edit</a>
-                        </li>
+                      <li>
+                        <a href="{{ path('ficha_show', { 'id': ficha.id }) }}">
+                          <div class="label label-table label-info">Ver Detalles</div>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{{ path('ficha_edit', { 'id': ficha.id }) }}">
+                          <div class="label label-table label-warning">Modificar</div>
+                        </a>
+                      </li>
                     </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('ficha_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <a href="{{ path('ficha_new') }}">
+      <span class="btn btn-success fileinput-button dz-clickable">
+        <i class="fa fa-plus"></i>
+        <span>Nueva Ficha</span>
+      </span>
+    </a>
 {% endblock %}

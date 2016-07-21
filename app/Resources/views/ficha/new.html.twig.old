@@ -1,10 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block page_title %}
-  <h1>Nueva Ficha</h1>
-{% endblock %}
-
 {% block body %}
+  <h1>Ficha creation</h1>
 
   <div class="panel">
 
@@ -25,7 +22,7 @@
           <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
           <ul class="wz-nav-off ">
             <li class="col-xs-2">
-              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab1" title="Datos de Paciente" class="add-tooltip">
+              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab1" title="Datos de Ficha" class="add-tooltip">
                 <span class="icon-wrap icon-wrap-sm icon-circle bg-mint">
                   <i class="wz-icon fa fa-user fa-2x"></i>
                   <i class="wz-icon-done fa fa-check fa-2x"></i>
@@ -33,7 +30,7 @@
               </a>
             </li>
             <li class="col-xs-2">
-              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab2" title="Ficha" class="add-tooltip">
+              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab2" title="Factores de Riesgo" class="add-tooltip">
                 <span class="icon-wrap icon-wrap-sm icon-circle bg-info">
                   <i class="wz-icon fa fa-info fa-2x"></i>
                   <i class="wz-icon-done fa fa-check fa-2x"></i>
@@ -41,7 +38,7 @@
               </a>
             </li>
             <li class="col-xs-2">
-              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab3" title="Causa Descompensante" class="add-tooltip">
+              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab3" title="Medicacion" class="add-tooltip">
                 <span class="icon-wrap icon-wrap-sm icon-circle bg-warning">
                   <i class="wz-icon fa fa-info fa-2x"></i>
                   <i class="wz-icon-done fa fa-check fa-2x"></i>
@@ -49,7 +46,7 @@
               </a>
             </li>
             <li class="col-xs-2">
-              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab4" title="Factores de riesgo" class="add-tooltip">
+              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab4" title="Causas Descompensante" class="add-tooltip">
                 <span class="icon-wrap icon-wrap-sm icon-circle bg-success">
                   <i class="wz-icon fa fa-info fa-2x"></i>
                   <i class="wz-icon-done fa fa-check fa-2x"></i>
@@ -57,7 +54,7 @@
               </a>
             </li>
             <li class="col-xs-2">
-              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab5" title="Medicacion" class="add-tooltip">
+              <a data-toggle="tab" href="forms-wizard.html#demo-cir-tab5" title="Causas Descompensante" class="add-tooltip">
                 <span class="icon-wrap icon-wrap-sm icon-circle bg-success">
                   <i class="wz-icon fa fa-info fa-2x"></i>
                   <i class="wz-icon-done fa fa-check fa-2x"></i>
@@ -85,125 +82,7 @@
 
               <!--First tab-->
               <div id="demo-cir-tab1" class="tab-pane fade">
-                {{ form_start(form_paciente,{'attr':{
-                'class' : 'form-horizontal'
-                } }) }}
-                {{ form_errors(form_paciente) }}
-                <div class="panel-body">
-                  <div class="form-group">
-                    {{ form_label(form_paciente.historia, "Historia Clinica", {'label_attr' : {
-                    'class' : 'col-sm-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(form_paciente.historia, {'attr':{
-                    'class' : 'form-control input-sm'
-                    } }) }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    {{ form_label(form_paciente.dni, "Nro. DNI", {'label_attr' : {
-                    'class' : 'col-sm-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(form_paciente.dni, {'attr':{
-                    'class' : 'form-control input-sm'
-                    } }) }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    {{ form_label(form_paciente.nombre, "Nombre", {'label_attr' : {
-                    'class' : 'col-sm-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(form_paciente.nombre, {'attr':{
-                    'class' : 'form-control input-sm'
-                    } }) }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    {{ form_label(form_paciente.paterno, "Apellido Paterno", {'label_attr' : {
-                    'class' : 'col-sm-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(form_paciente.paterno, {'attr':{
-                    'class' : 'form-control input-sm'
-                    } }) }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    {{ form_label(form_paciente.materno, "Apelldio Materno", {'label_attr' : {
-                    'class' : 'col-sm-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(form_paciente.materno, {'attr':{
-                    'class' : 'form-control input-sm'
-                    } }) }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    {{ form_label(form_paciente.genero, "Sexo", {'label_attr' : {
-                    'class' : 'col-sm-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(form_paciente.genero, {'attr':{
-                    'class' : 'form-control input-sm'
-                    } }) }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    {{ form_label(form_paciente.fechaNacimiento, "Fecha Nacimiento", {'label_attr' : {
-                    'class' : 'col-sm-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(form_paciente.fechaNacimiento, {'attr':{
-                    'class' : 'form-control input-sm'
-                    } }) }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    {{ form_label(form_paciente.telefono, "Telefono", {'label_attr' : {
-                    'class' : 'col-sm-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(form_paciente.telefono, {'attr':{
-                    'class' : 'form-control input-sm'
-                    } }) }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    {{ form_label(form_paciente.activo, "Activo", {'label_attr' : {
-                    'class' : 'col-sm-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(form_paciente.activo, {'attr':{
-                    'class' : 'form-control input-sm',
-                    'data-switchery' : 'true',
-                    'style' : "display: none;"
-                    } }) }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    {{ form_label(form_paciente.fechaRegistro, "Fecha Registro", {'label_attr' : {
-                    'class' : 'col-sm-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(form_paciente.fechaRegistro, {'attr':{
-                    'class' : 'form-control input-sm'
-                    } }) }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    {{ form_label(form_paciente.ocupacion, "Ocupacion", {'label_attr' : {
-                    'class' : 'col-sm-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(form_paciente.ocupacion, {'attr':{
-                    'class' : 'form-control input-sm'
-                    } }) }}
-                    </div>
-                  </div>
-                </div>
-                {{ form_end(form_paciente) }}
+
               </div>
 
               <!--Second tab-->
@@ -348,87 +227,73 @@
 
               <!--Third tab-->
               <div id="demo-cir-tab3" class="tab-pane">
-                {% for medicacion in form.idcausaDescompensante %}
-                  <div class="form-group">
-                    {{ form_label(medicacion, "", {'label_attr' : {
-                      'class' : 'col-sm-3 col-lg-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(medicacion, {'attr':{
-                        'class' : 'form-control input-sm',
-                        'data-switchery' : 'true',
-                        'style' : "display: none;"
-                      } }) }}
-                    </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Phone Number</label>
+                  <div class="col-lg-7">
+                    <input type="text" placeholder="Phone number" name="phoneNumber" class="form-control">
                   </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label">Address</label>
+                  <div class="col-lg-7">
+                    <input type="text" placeholder="Address" name="address" class="form-control">
+                  </div>
+                </div>
+                {% for medicacion in medicaciones %}
+                <div class="form-group">
+                  <label class="col-lg-3 control-label" for="switch-medicacion-{{ medicacion.id}}">{{ medicacion.nombre }}</label>
+                  <div class="col-sm-6">
+                    <input id="switch-medicacion-{{ medicacion.id}}" type="checkbox" checked>
+                  </div>
+                </div>
                 {% endfor %}
               </div>
-
 
               <!--Fourth tab-->
               <div id="demo-cir-tab4" class="tab-pane">
-                {% for factor in form.idfactorRiesgo %}
-                  <div class="form-group">
-                    {{ form_label(factor, "", {'label_attr' : {
-                      'class' : 'col-sm-3 col-lg-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(factor, {'attr':{
-                        'class' : 'form-control input-sm',
-                        'data-switchery' : 'true',
-                        'style' : "display: none;"
-                      } }) }}
-                    </div>
+                {% for causaDescompensante in causasDescompensantes %}
+                <div class="form-group">
+                  <label class="col-lg-3 control-label" for="switch-causaDescompensante-{{ causaDescompensante.id}}">{{ causaDescompensante.nombre }}</label>
+                  <div class="col-sm-6">
+                    <input id="switch-causaDescompensante-{{ causaDescompensante.id}}" type="checkbox" checked>
                   </div>
+                </div>
                 {% endfor %}
               </div>
 
-              <!--Fourth tab-->
+              <!--Five tab-->
               <div id="demo-cir-tab5" class="tab-pane">
-                {% for medicacion in form.idmedicacionAlta %}
-                  <div class="form-group">
-                    {{ form_label(medicacion, "", {'label_attr' : {
-                      'class' : 'col-sm-3 col-lg-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(medicacion, {'attr':{
-                        'class' : 'form-control input-sm',
-                        'data-switchery' : 'true',
-                        'style' : "display: none;"
-                      } }) }}
-                    </div>
+                {% for causaDescompensante in causasDescompensantes %}
+                <div class="form-group">
+                  <label class="col-lg-3 control-label" for="switch-causaDescompensante-{{ causaDescompensante.id}}">{{ causaDescompensante.nombre }}</label>
+                  <div class="col-sm-6">
+                    <input id="switch-causaDescompensante-{{ causaDescompensante.id}}" type="checkbox" checked>
                   </div>
-                {% endfor %}
-              </div>
-              <div id="demo-cir-tab6" class="tab-pane">
-                <h2>Tab 06</h2>
-                {% for rxTorax in form.idrxTorax %}
-                  <div class="form-group">
-                    {{ form_label(rxTorax, "", {'label_attr' : {
-                      'class' : 'col-sm-3 col-lg-3 control-label'
-                    } }) }}
-                    <div class="col-sm-6">
-                      {{ form_widget(rxTorax, {'attr':{
-                        'class' : 'form-control input-sm',
-                        'data-switchery' : 'true',
-                        'style' : "display: none;"
-                      } }) }}
-                    </div>
-                  </div>
+                </div>
                 {% endfor %}
               </div>
 
+              <!--Six tab-->
+              <div id="demo-cir-tab6" class="tab-pane">
+                {% for causaDescompensante in causasDescompensantes %}
+                <div class="form-group">
+                  <label class="col-lg-3 control-label" for="switch-causaDescompensante-{{ causaDescompensante.id}}">{{ causaDescompensante.nombre }}</label>
+                  <div class="col-sm-6">
+                    <input id="switch-causaDescompensante-{{ causaDescompensante.id}}" type="checkbox" checked>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+
+            </div>
           </div>
 
           <!--Footer button-->
           <div class="panel-footer text-right">
             <div class="box-inline">
-              <a href="{{ path('ficha_index') }}">
-              <button class="btn btn-danger" type="button">Cancelar</button>
-              </a>
               <button type="button" class="previous btn btn-primary">Previous</button>
               <button type="button" class="next btn btn-primary">Next</button>
-              <button type="submit" class="finish btn btn-success" disabled>Finish</button>
+              <button type="submit" class="finish btn btn-warning" disabled>Finish</button>
             </div>
           </div>
         {{ form_end(form) }}
@@ -439,6 +304,11 @@
     </div>
 
   </div>
+  <ul>
+    <li>
+      <a href="{{ path('ficha_index') }}">Back to the list</a>
+    </li>
+  </ul>
 
 {% endblock %}
 
@@ -487,20 +357,19 @@
 
     new Switchery(document.getElementById('ficha_fallaCardiaca'), {size: 'large'});
     // Factores de riesgo en la ficha principal
-    {% for medicacion in form.idmedicacionAlta %}
-      new Switchery(document.getElementById('{{medicacion.vars.id}}'), {size: 'large'});
-    {% endfor %}
-    {% for causa in form.idcausaDescompensante %}
-      new Switchery(document.getElementById('{{causa.vars.id}}'), {size: 'large'});
-    {% endfor %}
-    {% for factor in form.idfactorRiesgo %}
-      new Switchery(document.getElementById('{{factor.vars.id}}'), {size: 'large'});
-    {% endfor %}
-    {% for rxTorax in form.idrxTorax %}
-      new Switchery(document.getElementById('{{rxTorax.vars.id}}'), {size: 'large'});
+    {% for factorRiesgo in factoresRiesgo %}
+      new Switchery(document.getElementById('switch-factorriesgo-{{factorRiesgo.id}}'), {size: 'large'});
     {% endfor %}
 
+    // Causa descompensante en la ficha principal
+    {% for causaDescompensante in causasDescompensantes %}
+      new Switchery(document.getElementById('switch-causaDescompensante-{{causaDescompensante.id}}'), {size: 'large'});
+    {% endfor %}
 
+    // Medicacion en la ficha principal
+    {% for medicacion in medicaciones %}
+      new Switchery(document.getElementById('switch-medicacion-{{medicacion.id}}'), {size: 'large'});
+    {% endfor %}
 
     $(function() {
       $('#seleccionafechaingreso').datetimepicker();

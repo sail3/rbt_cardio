@@ -5,6 +5,7 @@ namespace CardioBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use CardioBundle\Entity\Paciente;
 use CardioBundle\Entity\Ficha;
 use CardioBundle\Form\FichaType;
 
@@ -33,30 +34,31 @@ class FichaController extends Controller
      * Creates a new Ficha entity.
      *
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Paciente $paciente = null)
     {
-        $em = $this->getDoctrine()->getManager();
-
         $ficha = new Ficha();
         $form = $this->createForm('CardioBundle\Form\FichaType', $ficha);
-        $factoresRiesgo = $em->getRepository('CardioBundle:FactorRiesgo')->findAll();
-        dump($factoresRiesgo);
-        // exit;
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $ficha->setFechaIngreso(new \DateTime(rtrim(str_replace(['AM','PM'],"", $ficha->getFechaIngreso()))));
-            $ficha->setAltaFecha(new \DateTime(rtrim(str_replace(['AM','PM'],"", $ficha->getAltaFecha()))));
+        if ($paciente != null) {
+          $formPaciente = $this->createForm('CardioBundle\Form\FichaType', $paciente);
+        }
+        else {
+          $paciente = new Paciente();
+          $formPaciente = $this->createForm('CardioBundle\Form\PacienteType', $paciente);
+          $formPaciente->handleRequest($request);
+        }
+        if ($form->isSubmitted() && $form->isValid() && $formPaciente->isSubmitted() && $formPaciente->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($ficha);
+            $em->persist($paciente);
             $em->flush();
-
             return $this->redirectToRoute('ficha_show', array('id' => $ficha->getId()));
         }
 
         return $this->render('ficha/new.html.twig', array(
             'ficha' => $ficha,
             'form' => $form->createView(),
-            'factoresRiesgo' => $factoresRiesgo,
+            'form_paciente' => $formPaciente->createView(),
         ));
     }
 
@@ -83,12 +85,15 @@ class FichaController extends Controller
         $deleteForm = $this->createDeleteForm($ficha);
         $editForm = $this->createForm('CardioBundle\Form\FichaType', $ficha);
         $editForm->handleRequest($request);
-
+        $em = $this->getDoctrine()->getManager();
+        $paciente = $em->getRepository('CardioBundle\Entity\Paciente')->findOneBy(array(
+              'dni' => 86867686,
+            ));
+        $pacienteForm = $this->createForm('CardioBundle\Form\PacienteType', $paciente);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($ficha);
             $em->flush();
-
             return $this->redirectToRoute('ficha_edit', array('id' => $ficha->getId()));
         }
 
@@ -96,6 +101,7 @@ class FichaController extends Controller
             'ficha' => $ficha,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'form_paciente' => $pacienteForm->createView(),
         ));
     }
 

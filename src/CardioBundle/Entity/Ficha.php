@@ -105,6 +105,52 @@ class Ficha
      */
     private $anotaciones;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="CausaDescompensante", mappedBy="idficha")
+     */
+    private $idcausaDescompensante;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="EstadoEvolutivo", mappedBy="idficha")
+     */
+    private $idestadoEvolutivo;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="FactorRiesgo", mappedBy="idficha")
+     */
+    private $idfactorRiesgo;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Medicacion", mappedBy="idficha")
+     */
+    private $idmedicacionAlta;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="RxTorax", mappedBy="idficha")
+     */
+    private $idrxTorax;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idcausaDescompensante = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idestadoEvolutivo = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idfactorRiesgo = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idmedicacionAlta = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idrxTorax = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -391,5 +437,175 @@ class Ficha
     public function getAnotaciones()
     {
         return $this->anotaciones;
+    }
+
+    /**
+     * Add idcausaDescompensante
+     *
+     * @param \CardioBundle\Entity\CausaDescompensante $idcausaDescompensante
+     * @return Ficha
+     */
+    public function addIdcausaDescompensante(\CardioBundle\Entity\CausaDescompensante $idcausaDescompensante)
+    {
+        $this->idcausaDescompensante[] = $idcausaDescompensante;
+
+        return $this;
+    }
+
+    /**
+     * Remove idcausaDescompensante
+     *
+     * @param \CardioBundle\Entity\CausaDescompensante $idcausaDescompensante
+     */
+    public function removeIdcausaDescompensante(\CardioBundle\Entity\CausaDescompensante $idcausaDescompensante)
+    {
+        $this->idcausaDescompensante->removeElement($idcausaDescompensante);
+    }
+
+    /**
+     * Get idcausaDescompensante
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdcausaDescompensante()
+    {
+        return $this->idcausaDescompensante;
+    }
+
+    /**
+     * Add idestadoEvolutivo
+     *
+     * @param \CardioBundle\Entity\EstadoEvolutivo $idestadoEvolutivo
+     * @return Ficha
+     */
+    public function addIdestadoEvolutivo(\CardioBundle\Entity\EstadoEvolutivo $idestadoEvolutivo)
+    {
+        $this->idestadoEvolutivo[] = $idestadoEvolutivo;
+
+        return $this;
+    }
+
+    /**
+     * Remove idestadoEvolutivo
+     *
+     * @param \CardioBundle\Entity\EstadoEvolutivo $idestadoEvolutivo
+     */
+    public function removeIdestadoEvolutivo(\CardioBundle\Entity\EstadoEvolutivo $idestadoEvolutivo)
+    {
+        $this->idestadoEvolutivo->removeElement($idestadoEvolutivo);
+    }
+
+    /**
+     * Get idestadoEvolutivo
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdestadoEvolutivo()
+    {
+        return $this->idestadoEvolutivo;
+    }
+
+    /**
+     * Add idfactorRiesgo
+     *
+     * @param \CardioBundle\Entity\FactorRiesgo $idfactorRiesgo
+     * @return Ficha
+     */
+    public function addIdfactorRiesgo(\CardioBundle\Entity\FactorRiesgo $idfactorRiesgo)
+    {
+        $this->idfactorRiesgo[] = $idfactorRiesgo;
+
+        return $this;
+    }
+
+    /**
+     * Remove idfactorRiesgo
+     *
+     * @param \CardioBundle\Entity\FactorRiesgo $idfactorRiesgo
+     */
+    public function removeIdfactorRiesgo(\CardioBundle\Entity\FactorRiesgo $idfactorRiesgo)
+    {
+        $this->idfactorRiesgo->removeElement($idfactorRiesgo);
+    }
+
+    /**
+     * Get idfactorRiesgo
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdfactorRiesgo()
+    {
+        return $this->idfactorRiesgo;
+    }
+
+    /**
+     * Add idmedicacionAlta
+     *
+     * @param \CardioBundle\Entity\Medicacion $idmedicacionAlta
+     * @return Ficha
+     */
+    public function addIdmedicacionAltum(\CardioBundle\Entity\Medicacion $idmedicacionAlta)
+    {
+        $this->idmedicacionAlta[] = $idmedicacionAlta;
+
+        return $this;
+    }
+
+    /**
+     * Remove idmedicacionAlta
+     *
+     * @param \CardioBundle\Entity\Medicacion $idmedicacionAlta
+     */
+    public function removeIdmedicacionAltum(\CardioBundle\Entity\Medicacion $idmedicacionAlta)
+    {
+        $this->idmedicacionAlta->removeElement($idmedicacionAlta);
+    }
+
+    /**
+     * Get idmedicacionAlta
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdmedicacionAlta()
+    {
+        return $this->idmedicacionAlta;
+    }
+
+    /**
+     * Add idrxTorax
+     *
+     * @param \CardioBundle\Entity\RxTorax $idrxTorax
+     * @return Ficha
+     */
+    public function addIdrxTorax(\CardioBundle\Entity\RxTorax $idrxTorax)
+    {
+        $this->idrxTorax[] = $idrxTorax;
+
+        return $this;
+    }
+
+    /**
+     * Remove idrxTorax
+     *
+     * @param \CardioBundle\Entity\RxTorax $idrxTorax
+     */
+    public function removeIdrxTorax(\CardioBundle\Entity\RxTorax $idrxTorax)
+    {
+        $this->idrxTorax->removeElement($idrxTorax);
+    }
+
+    /**
+     * Get idrxTorax
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdrxTorax()
+    {
+        return $this->idrxTorax;
+    }
+
+    public function __tostring()
+    {
+      return $this->getNombre();
     }
 }

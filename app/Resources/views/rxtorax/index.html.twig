@@ -1,47 +1,49 @@
 {% extends 'base.html.twig' %}
-
+{% block page_title %}
+    <h1>Rx Torax | Listado</h1>
+{% endblock %}
 {% block body %}
-    <h1>RxTorax list</h1>
 
-    <table>
+    <table class="table table-hover table-vcenter">
         <thead>
             <tr>
                 <th>Idrxtorax</th>
-                <th>Congestionpulmonar</th>
-                <th>Derramepulmonar</th>
-                <th>Derramepericardico</th>
-                <th>Cardiomegalia</th>
-                <th>Neumonia</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Enable</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for rxTorax in rxToraxes %}
             <tr>
-                <td><a href="{{ path('rx-torax_show', { 'id': rxTorax.idrxTorax }) }}">{{ rxTorax.idrxTorax }}</a></td>
-                <td>{% if rxTorax.congestionPulmonar %}Yes{% else %}No{% endif %}</td>
-                <td>{% if rxTorax.derramePulmonar %}Yes{% else %}No{% endif %}</td>
-                <td>{% if rxTorax.derramePericardico %}Yes{% else %}No{% endif %}</td>
-                <td>{% if rxTorax.cardiomegalia %}Yes{% else %}No{% endif %}</td>
-                <td>{% if rxTorax.neumonia %}Yes{% else %}No{% endif %}</td>
+                <td><a href="{{ path('rx-torax_show', { 'id': rxTorax.id }) }}">{{ rxTorax.id }}</a></td>
+                <td>{{ rxTorax.nombre }}</td>
+                <td>{{ rxTorax.descripcion }}</td>
+                <td>{% if rxTorax.enable %}Yes{% else %}No{% endif %}</td>
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('rx-torax_show', { 'id': rxTorax.idrxTorax }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('rx-torax_edit', { 'id': rxTorax.idrxTorax }) }}">edit</a>
-                        </li>
+                      <li>
+                            <a href="{{ path('rx-torax_show', { 'id': rxTorax.id }) }}">
+                          <div class="label label-table label-info">Ver Detalles</div>
+                        </a>
+                      </li>
+                      <li>
+                            <a href="{{ path('rx-torax_edit', { 'id': rxTorax.id }) }}">
+                          <div class="label label-table label-warning">Modificar</div>
+                        </a>
+                      </li>
                     </ul>
                 </td>
+
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('rx-torax_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+            <a href="{{ path('rx-torax_new') }}">
+      <span class="btn btn-success fileinput-button dz-clickable">
+        <i class="fa fa-plus"></i>
+        <span>Agregar nuevo elemento</span>
+      </span>
+    </a>
 {% endblock %}

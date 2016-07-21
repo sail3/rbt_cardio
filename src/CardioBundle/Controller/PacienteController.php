@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use CardioBundle\Entity\Paciente;
 use CardioBundle\Form\PacienteType;
+use CardioBundle\Controller\FichaController;
 
 /**
  * Paciente controller.
@@ -124,5 +125,23 @@ class PacienteController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function searchAction(Request $request) {
+      // $form = $this->createForm('CardioBundle\Form\BusquedaType');
+      // $form->handleRequest($request);
+      // if ($form->isSubmitted() && $form->isValid()) {
+      //     $dni = $request->request->get('busqueda')['dni'];
+      //     $em = $this->getDoctrine()->getManager();
+      //     $paciente = $em->getRepository('CardioBundle\Entity\Paciente')->findOneBy(array(
+      //       'dni' => $dni,
+      //     ));
+      //     // return $this->redirectToRoute('ficha_new', array('id' => $paciente->getId()));
+      //     $ficha = new FichaController();
+      //     return $ficha->newAction($request, $paciente);
+      // }
+      // return $this->render('paciente/busqueda.html.twig', array(
+      //     'form' => $form->createView(),
+      // ));
     }
 }
