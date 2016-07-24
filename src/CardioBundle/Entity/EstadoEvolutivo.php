@@ -181,9 +181,9 @@ class EstadoEvolutivo
     /**
      * Get idestadoEvolutivo
      *
-     * @return integer
+     * @return integer 
      */
-    public function getId()
+    public function getIdestadoEvolutivo()
     {
         return $this->idestadoEvolutivo;
     }
@@ -204,7 +204,7 @@ class EstadoEvolutivo
     /**
      * Get glucosa
      *
-     * @return string
+     * @return string 
      */
     public function getGlucosa()
     {
@@ -227,7 +227,7 @@ class EstadoEvolutivo
     /**
      * Get creatinina
      *
-     * @return string
+     * @return string 
      */
     public function getCreatinina()
     {
@@ -250,7 +250,7 @@ class EstadoEvolutivo
     /**
      * Get urea
      *
-     * @return string
+     * @return string 
      */
     public function getUrea()
     {
@@ -273,7 +273,7 @@ class EstadoEvolutivo
     /**
      * Get sodio
      *
-     * @return string
+     * @return string 
      */
     public function getSodio()
     {
@@ -296,7 +296,7 @@ class EstadoEvolutivo
     /**
      * Get potasio
      *
-     * @return string
+     * @return string 
      */
     public function getPotasio()
     {
@@ -319,7 +319,7 @@ class EstadoEvolutivo
     /**
      * Get hb
      *
-     * @return string
+     * @return string 
      */
     public function getHb()
     {
@@ -342,7 +342,7 @@ class EstadoEvolutivo
     /**
      * Get plaquetas
      *
-     * @return string
+     * @return string 
      */
     public function getPlaquetas()
     {
@@ -365,7 +365,7 @@ class EstadoEvolutivo
     /**
      * Get vmc
      *
-     * @return string
+     * @return string 
      */
     public function getVmc()
     {
@@ -388,7 +388,7 @@ class EstadoEvolutivo
     /**
      * Get hmc
      *
-     * @return string
+     * @return string 
      */
     public function getHmc()
     {
@@ -411,7 +411,7 @@ class EstadoEvolutivo
     /**
      * Get rdwCv
      *
-     * @return string
+     * @return string 
      */
     public function getRdwCv()
     {
@@ -434,7 +434,7 @@ class EstadoEvolutivo
     /**
      * Get leucocitos
      *
-     * @return string
+     * @return string 
      */
     public function getLeucocitos()
     {
@@ -457,7 +457,7 @@ class EstadoEvolutivo
     /**
      * Get neutro
      *
-     * @return string
+     * @return string 
      */
     public function getNeutro()
     {
@@ -480,7 +480,7 @@ class EstadoEvolutivo
     /**
      * Get linfocitos
      *
-     * @return string
+     * @return string 
      */
     public function getLinfocitos()
     {
@@ -503,7 +503,7 @@ class EstadoEvolutivo
     /**
      * Get troponina
      *
-     * @return string
+     * @return string 
      */
     public function getTroponina()
     {
@@ -526,7 +526,7 @@ class EstadoEvolutivo
     /**
      * Get cpkMb
      *
-     * @return string
+     * @return string 
      */
     public function getCpkMb()
     {
@@ -549,7 +549,7 @@ class EstadoEvolutivo
     /**
      * Get tgp
      *
-     * @return string
+     * @return string 
      */
     public function getTgp()
     {
@@ -572,7 +572,7 @@ class EstadoEvolutivo
     /**
      * Get albumina
      *
-     * @return string
+     * @return string 
      */
     public function getAlbumina()
     {
@@ -595,7 +595,7 @@ class EstadoEvolutivo
     /**
      * Get proBnp
      *
-     * @return string
+     * @return string 
      */
     public function getProBnp()
     {
@@ -618,7 +618,7 @@ class EstadoEvolutivo
     /**
      * Get lactato
      *
-     * @return string
+     * @return string 
      */
     public function getLactato()
     {
@@ -651,15 +651,10 @@ class EstadoEvolutivo
     /**
      * Get idficha
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getIdficha()
     {
         return $this->idficha;
-    }
-    
-    public function __tostring()
-    {
-      return $this->getNombre();
     }
 }

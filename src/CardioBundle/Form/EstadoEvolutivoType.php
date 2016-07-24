@@ -17,18 +17,23 @@ class EstadoEvolutivoType extends AbstractType
         $builder
             ->add('glucosa')
             ->add('creatinina')
+            ->add('urea')
             ->add('sodio')
+            ->add('potasio')
             ->add('hb')
+            ->add('plaquetas')
             ->add('vmc')
-            ->add('rdw')
+            ->add('hmc')
+            ->add('rdwCv')
             ->add('leucocitos')
             ->add('neutro')
             ->add('linfocitos')
             ->add('troponina')
+            ->add('cpkMb')
             ->add('tgp')
+            ->add('albumina')
             ->add('proBnp')
             ->add('lactato')
-            ->add('idficha')
         ;
     }
     

@@ -21,11 +21,13 @@ class FactorRiesgoController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         $factorRiesgos = $em->getRepository('CardioBundle:FactorRiesgo')->findAll();
 
         return $this->render('factorriesgo/index.html.twig', array(
             'factorRiesgos' => $factorRiesgos,
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -38,6 +40,7 @@ class FactorRiesgoController extends Controller
         $factorRiesgo = new FactorRiesgo();
         $form = $this->createForm('CardioBundle\Form\FactorRiesgoType', $factorRiesgo);
         $form->handleRequest($request);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -50,6 +53,7 @@ class FactorRiesgoController extends Controller
         return $this->render('factorriesgo/new.html.twig', array(
             'factorRiesgo' => $factorRiesgo,
             'form' => $form->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -60,10 +64,12 @@ class FactorRiesgoController extends Controller
     public function showAction(FactorRiesgo $factorRiesgo)
     {
         $deleteForm = $this->createDeleteForm($factorRiesgo);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         return $this->render('factorriesgo/show.html.twig', array(
             'factorRiesgo' => $factorRiesgo,
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -76,6 +82,7 @@ class FactorRiesgoController extends Controller
         $deleteForm = $this->createDeleteForm($factorRiesgo);
         $editForm = $this->createForm('CardioBundle\Form\FactorRiesgoType', $factorRiesgo);
         $editForm->handleRequest($request);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -89,6 +96,7 @@ class FactorRiesgoController extends Controller
             'factorRiesgo' => $factorRiesgo,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 

@@ -44,7 +44,7 @@ class EstadoEvolutivoController extends Controller
             $em->persist($estadoEvolutivo);
             $em->flush();
 
-            return $this->redirectToRoute('estado-evolutivo_show', array('id' => $estadoEvolutivo->getId()));
+            return $this->redirectToRoute('esevolutivo_show', array('id' => $estadoEvolutivo->getId()));
         }
 
         return $this->render('estadoevolutivo/new.html.twig', array(
@@ -82,7 +82,7 @@ class EstadoEvolutivoController extends Controller
             $em->persist($estadoEvolutivo);
             $em->flush();
 
-            return $this->redirectToRoute('estado-evolutivo_edit', array('id' => $estadoEvolutivo->getId()));
+            return $this->redirectToRoute('esevolutivo_edit', array('id' => $estadoEvolutivo->getId()));
         }
 
         return $this->render('estadoevolutivo/edit.html.twig', array(
@@ -107,7 +107,7 @@ class EstadoEvolutivoController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('estado-evolutivo_index');
+        return $this->redirectToRoute('esevolutivo_index');
     }
 
     /**
@@ -120,7 +120,7 @@ class EstadoEvolutivoController extends Controller
     private function createDeleteForm(EstadoEvolutivo $estadoEvolutivo)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('estado-evolutivo_delete', array('id' => $estadoEvolutivo->getId())))
+            ->setAction($this->generateUrl('esevolutivo_delete', array('id' => $estadoEvolutivo->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

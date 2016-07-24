@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+{% block page_title %}
+  <h1>Usuario | listado</h1>
+{% endblock %}
+{% block body %}
+
+  <table class="table table-hover table-vcenter">
+    <thead>
+      <tr>
+        <th>Idusuario</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Direccion</th>
+        <th>Dni</th>
+        <th>Fecharegistro</th>
+        <th>Enable</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for usuario in usuarios %}
+        <tr>
+          <td>
+            <a href="{{ path('user_show', { 'id': usuario.id }) }}">{{ usuario.id }}</a>
+          </td>
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.apellido }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.direccion }}</td>
+          <td>{{ usuario.dni }}</td>
+          <td>
+            {% if usuario.fechaRegistro %}{{ usuario.fechaRegistro|date('Y-m-d') }}{% endif %}
+          </td>
+          <td>
+            {% if usuario.enable %}Yes{% else %}No{% endif %}
+          </td>
+          <!-- <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('user_show', { 'id': usuario.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('user_edit', { 'id': usuario.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td> -->
+          <td>
+            <ul>
+              <li>
+                <a href="{{ path('user_show', { 'id': usuario.id }) }}">
+                  <div class="label label-table label-info">Ver Detalles</div>
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('user_edit', { 'id': usuario.id }) }}">
+                  <div class="label label-table label-warning">Modificar</div>
+                </a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{{ path('user_new') }}">
+    <span class="btn btn-success fileinput-button dz-clickable">
+      <i class="fa fa-plus"></i>
+      <span>Nuevo Usuario</span>
+    </span>
+  </a>
+{% endblock %}

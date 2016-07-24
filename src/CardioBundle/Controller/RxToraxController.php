@@ -21,11 +21,13 @@ class RxToraxController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         $rxToraxes = $em->getRepository('CardioBundle:RxTorax')->findAll();
 
         return $this->render('rxtorax/index.html.twig', array(
             'rxToraxes' => $rxToraxes,
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -38,6 +40,7 @@ class RxToraxController extends Controller
         $rxTorax = new RxTorax();
         $form = $this->createForm('CardioBundle\Form\RxToraxType', $rxTorax);
         $form->handleRequest($request);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -50,6 +53,7 @@ class RxToraxController extends Controller
         return $this->render('rxtorax/new.html.twig', array(
             'rxTorax' => $rxTorax,
             'form' => $form->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -60,10 +64,12 @@ class RxToraxController extends Controller
     public function showAction(RxTorax $rxTorax)
     {
         $deleteForm = $this->createDeleteForm($rxTorax);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         return $this->render('rxtorax/show.html.twig', array(
             'rxTorax' => $rxTorax,
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -76,6 +82,7 @@ class RxToraxController extends Controller
         $deleteForm = $this->createDeleteForm($rxTorax);
         $editForm = $this->createForm('CardioBundle\Form\RxToraxType', $rxTorax);
         $editForm->handleRequest($request);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -89,6 +96,7 @@ class RxToraxController extends Controller
             'rxTorax' => $rxTorax,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 

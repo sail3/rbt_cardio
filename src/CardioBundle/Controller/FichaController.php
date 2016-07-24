@@ -22,11 +22,13 @@ class FichaController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         $fichas = $em->getRepository('CardioBundle:Ficha')->findAll();
 
         return $this->render('ficha/index.html.twig', array(
             'fichas' => $fichas,
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -38,6 +40,7 @@ class FichaController extends Controller
     {
         $ficha = new Ficha();
         $form = $this->createForm('CardioBundle\Form\FichaType', $ficha);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
         $form->handleRequest($request);
         if ($paciente != null) {
           $formPaciente = $this->createForm('CardioBundle\Form\FichaType', $paciente);
@@ -59,6 +62,7 @@ class FichaController extends Controller
             'ficha' => $ficha,
             'form' => $form->createView(),
             'form_paciente' => $formPaciente->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -69,10 +73,12 @@ class FichaController extends Controller
     public function showAction(Ficha $ficha)
     {
         $deleteForm = $this->createDeleteForm($ficha);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         return $this->render('ficha/show.html.twig', array(
             'ficha' => $ficha,
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -84,6 +90,7 @@ class FichaController extends Controller
     {
         $deleteForm = $this->createDeleteForm($ficha);
         $editForm = $this->createForm('CardioBundle\Form\FichaType', $ficha);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
         $editForm->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
         $paciente = $em->getRepository('CardioBundle\Entity\Paciente')->findOneBy(array(
@@ -102,6 +109,7 @@ class FichaController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'form_paciente' => $pacienteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 

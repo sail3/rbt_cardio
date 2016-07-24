@@ -3,22 +3,64 @@
 security:
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
-    providers:
-        in_memory:
-            memory: ~
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
 
-        main:
+        # secured_area:
+        #     pattern: ^/admin*
+        #     anonymous: ~
+        #     http_basic: ~
+        #     provider:   administradores
+        admin_area:
+            pattern: ^/*
             anonymous: ~
-            # activate different ways to authenticate
+            form_login: ~
+            provider:   usuarios
+            logout: ~
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        # dev:
+        #     pattern: ^/(_(profiler|wdt)|css|images|js)/
+        #     security: false
+
+        # default:
+        #     anonymous:  ~
+        #     http_basic: ~
+        #     provider:   administradores
+        # # secured_area:
+        #
+        #     logout:
+        #         path: /logout
+        #         target: /paciente
+        #     # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+        #
+        #     # form_login: ~
+        #     # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        - { path: ^/login , roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin , roles: ROLE_ADMIN }
+        - { path: ^/ , roles: ROLE_USUARIO }
+    encoders:
+        CardioBundle\Entity\Usuario:
+            algorithm: bcrypt
+            cost: 8
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 8
+
+    providers:
+        usuarios:
+            entity:
+                class: CardioBundle\Entity\Usuario
+                property: email
+        administradores:
+            memory:
+                users:
+                  admin:
+                    # password:   1234
+                    password:   '$2y$13$w700yeSs8FxMLrEXaCATgehosZf9vx09RbwKddswl9LN/22dKL2qO'
+                    roles:      ROLE_ADMIN
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USUARIO, ROLE_ALLOWED_TO_SWITCH]

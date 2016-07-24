@@ -21,11 +21,13 @@ class CausaDescompensanteController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         $causaDescompensantes = $em->getRepository('CardioBundle:CausaDescompensante')->findAll();
 
         return $this->render('causadescompensante/index.html.twig', array(
             'causaDescompensantes' => $causaDescompensantes,
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -37,6 +39,7 @@ class CausaDescompensanteController extends Controller
     {
         $causaDescompensante = new CausaDescompensante();
         $form = $this->createForm('CardioBundle\Form\CausaDescompensanteType', $causaDescompensante);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -50,6 +53,7 @@ class CausaDescompensanteController extends Controller
         return $this->render('causadescompensante/new.html.twig', array(
             'causaDescompensante' => $causaDescompensante,
             'form' => $form->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -60,10 +64,12 @@ class CausaDescompensanteController extends Controller
     public function showAction(CausaDescompensante $causaDescompensante)
     {
         $deleteForm = $this->createDeleteForm($causaDescompensante);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         return $this->render('causadescompensante/show.html.twig', array(
             'causaDescompensante' => $causaDescompensante,
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -75,6 +81,7 @@ class CausaDescompensanteController extends Controller
     {
         $deleteForm = $this->createDeleteForm($causaDescompensante);
         $editForm = $this->createForm('CardioBundle\Form\CausaDescompensanteType', $causaDescompensante);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -89,6 +96,7 @@ class CausaDescompensanteController extends Controller
             'causaDescompensante' => $causaDescompensante,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 

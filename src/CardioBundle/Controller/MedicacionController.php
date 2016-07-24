@@ -21,11 +21,13 @@ class MedicacionController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         $medicacions = $em->getRepository('CardioBundle:Medicacion')->findAll();
 
         return $this->render('medicacion/index.html.twig', array(
             'medicacions' => $medicacions,
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -38,6 +40,7 @@ class MedicacionController extends Controller
         $medicacion = new Medicacion();
         $form = $this->createForm('CardioBundle\Form\MedicacionType', $medicacion);
         $form->handleRequest($request);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -50,6 +53,7 @@ class MedicacionController extends Controller
         return $this->render('medicacion/new.html.twig', array(
             'medicacion' => $medicacion,
             'form' => $form->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -60,10 +64,12 @@ class MedicacionController extends Controller
     public function showAction(Medicacion $medicacion)
     {
         $deleteForm = $this->createDeleteForm($medicacion);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         return $this->render('medicacion/show.html.twig', array(
             'medicacion' => $medicacion,
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -76,6 +82,7 @@ class MedicacionController extends Controller
         $deleteForm = $this->createDeleteForm($medicacion);
         $editForm = $this->createForm('CardioBundle\Form\MedicacionType', $medicacion);
         $editForm->handleRequest($request);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -89,6 +96,7 @@ class MedicacionController extends Controller
             'medicacion' => $medicacion,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 

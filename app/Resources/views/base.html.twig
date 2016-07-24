@@ -117,32 +117,33 @@
                   <span class="pull-right">
                     <img class="img-circle img-user media-object" src="{{ asset('img/av1.png') }}" alt="Profile Picture">
                   </span>
-                  <div class="username hidden-xs">John Doe</div>
+                  <div class="username hidden-xs">{{ usuario_activo.nombre }} - {{ usuario_activo.apellido }}</div>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
                   <!-- User dropdown menu -->
                   <ul class="head-list">
                     <li>
-                      <a href="{{ path('homepage') }}">
+                      <a href="{{ path('user_show', { 'id': usuario_activo.id }) }}">
                         <i class="pli-male icon-lg icon-fw"></i>
                         Profile
                       </a>
                     </li>
-
+                    {% if 'ROLE_ADMIN' in usuario_activo.getRoles() %}
                     <li>
-                      <a href="{{ path('homepage') }}">
+                      <a href="{{ path('user_index') }}">
                         <span class="label label-success pull-right">New</span>
                         <i class="pli-gear icon-lg icon-fw"></i>
                         Settings
                       </a>
                     </li>
+                    {% endif %}
 
                   </ul>
 
                   <!-- Dropdown footer -->
                   <div class="pad-all text-right">
-                    <a href="{{ path('homepage') }}" class="btn btn-primary">
+                    <a href="{{ path('logout') }}" class="btn btn-primary">
                       <i class="pli-unlock"></i>
                       Logout
                     </a>
@@ -190,7 +191,7 @@
 
           <!--Breadcrumb-->
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-          <ol class="breadcrumb">
+          <!-- <ol class="breadcrumb">
             <li>
               <a href="index.html#">Home</a>
             </li>
@@ -198,7 +199,7 @@
               <a href="index.html#">Library</a>
             </li>
             <li class="active">Data</li>
-          </ol>
+          </ol> -->
           <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
           <!--End breadcrumb-->
 
@@ -308,7 +309,7 @@
                       </ul>
                     </li>
                     <li class="list-divider"></li>
-
+                    {% if 'ROLE_ADMIN'  in  usuario_activo.getRoles() %}
                     <!--Category name-->
                     <li class="list-header">Administradores</li>
 
@@ -416,6 +417,8 @@
                       </ul>
                     </li>
                     <li class="list-divider"></li>
+
+                    {% endif %}
                   </ul>
 
 

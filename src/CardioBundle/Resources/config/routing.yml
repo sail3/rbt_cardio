@@ -19,6 +19,22 @@ cardio_paciente:
 cardio_rx-torax:
     resource: "@CardioBundle/Resources/config/routing/rxtorax.yml"
     prefix:   /admin/rx-torax
+cardio_user:
+    resource: "@CardioBundle/Resources/config/routing/usuario.yml"
+    prefix:   /admin/user
+
 cardio_homepage:
     path:     /
-    defaults: { _controller: CardioBundle:Default:index }
+    defaults: { _controller: CardioBundle:Ficha:index }
+
+login:
+    path:     /login
+    defaults: { _controller: CardioBundle:Usuario:login }
+
+login_check:
+    path:     /login_check
+    defaults: { _controller: CardioBundle:Usuario:loginCheck }
+
+logout:
+    path: /logout
+    defaults: { _controller: CardioBundle:Usuario:logout }

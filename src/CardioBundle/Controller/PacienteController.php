@@ -22,11 +22,13 @@ class PacienteController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         $pacientes = $em->getRepository('CardioBundle:Paciente')->findAll();
 
         return $this->render('paciente/index.html.twig', array(
             'pacientes' => $pacientes,
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -38,6 +40,7 @@ class PacienteController extends Controller
     {
         $paciente = new Paciente();
         $form = $this->createForm('CardioBundle\Form\PacienteType', $paciente);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,6 +54,7 @@ class PacienteController extends Controller
         return $this->render('paciente/new.html.twig', array(
             'paciente' => $paciente,
             'form' => $form->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -61,10 +65,12 @@ class PacienteController extends Controller
     public function showAction(Paciente $paciente)
     {
         $deleteForm = $this->createDeleteForm($paciente);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         return $this->render('paciente/show.html.twig', array(
             'paciente' => $paciente,
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -76,6 +82,7 @@ class PacienteController extends Controller
     {
         $deleteForm = $this->createDeleteForm($paciente);
         $editForm = $this->createForm('CardioBundle\Form\PacienteType', $paciente);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -90,6 +97,7 @@ class PacienteController extends Controller
             'paciente' => $paciente,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 

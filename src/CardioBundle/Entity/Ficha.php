@@ -603,9 +603,4 @@ class Ficha
     {
         return $this->idrxTorax;
     }
-
-    public function __tostring()
-    {
-      return $this->getNombre();
-    }
 }
