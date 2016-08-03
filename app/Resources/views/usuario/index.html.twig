@@ -4,18 +4,19 @@
 {% endblock %}
 {% block body %}
 
-  <table class="table table-hover table-vcenter">
+  <!-- <table class="table table-hover table-vcenter"> -->
+  <table id="content-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
       <tr>
-        <th>Idusuario</th>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Email</th>
-        <th>Direccion</th>
-        <th>Dni</th>
-        <th>Fecharegistro</th>
-        <th>Enable</th>
-        <th>Actions</th>
+        <th class="min-tablet">Idusuario</th>
+        <th class="min-mobile">Apellido</th>
+        <th class="min-desktop">Nombre</th>
+        <th class="min-mobile">Email</th>
+        <th class="min-desktop">Direccion</th>
+        <th class="min-tablet">Dni</th>
+        <th class="min-desktop">Fecharegistro</th>
+        <th class="min-desktop">Enable</th>
+        <th class="min-mobile">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -70,4 +71,38 @@
       <span>Nuevo Usuario</span>
     </span>
   </a>
+{% endblock %}
+
+{% block script_region %}
+  <script src="{{ asset('plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
+  <script src="{{ asset('plugins/datatables/media/js/jquery.dataTables.js') }}"></script>
+  <script src="{{ asset('plugins/datatables/media/js/dataTables.bootstrap.js') }}"></script>
+  <script src="{{ asset('plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // $('#demo-dt-selection').DataTable();
+      var rowSelection = $('#content-table').DataTable({
+        "responsive": true,
+        "language": {
+          "paginate": {
+            "previous": '<i class="fa fa-angle-left"></i>',
+            "next": '<i class="fa fa-angle-right"></i>'
+          }
+        }
+      });
+      $('#content-table').on('click', 'tr', function() {
+        if ($(this).hasClass('selected')) {
+          $(this).removeClass('selected');
+        } else {
+          rowSelection.$('tr.selected').removeClass('selected');
+          $(this).addClass('selected');
+        }
+      });
+      $('#searchbox').keyup(function() {
+        rowSelection.search($(this).val()).draw();
+      });
+      $('#content-table_filter').hide();
+    });
+  </script>
 {% endblock %}

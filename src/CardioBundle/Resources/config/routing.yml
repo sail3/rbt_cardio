@@ -25,7 +25,7 @@ cardio_user:
 
 cardio_homepage:
     path:     /
-    defaults: { _controller: CardioBundle:Ficha:index }
+    defaults: { _controller: CardioBundle:Paciente:index }
 
 login:
     path:     /login

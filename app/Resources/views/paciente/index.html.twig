@@ -1,63 +1,104 @@
 {% extends 'base.html.twig' %}
 {% block page_title %}
-    <h1>Paciente | Listado</h1>
+  <h1>Paciente | Listado</h1>
 {% endblock %}
 {% block body %}
 
-    <table class="table table-hover table-vcenter">
-        <thead>
-            <tr>
-                <th>Historia</th>
-                <th>Dni</th>
-                <th>Nombre</th>
-                <th>Paterno</th>
-                <th>Materno</th>
-                <th>Genero</th>
-                <th>Fechanacimiento</th>
-                <th>Telefono</th>
-                <th>Activo</th>
-                <th>Fecharegistro</th>
-                <th>Ocupacion</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for paciente in pacientes %}
-            <tr>
-                <td>{{ paciente.historia }}</td>
-                <td>{{ paciente.dni }}</td>
-                <td>{{ paciente.nombre }}</td>
-                <td>{{ paciente.paterno }}</td>
-                <td>{{ paciente.materno }}</td>
-                <td>{{ paciente.genero }}</td>
-                <td>{% if paciente.fechaNacimiento %}{{ paciente.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ paciente.telefono }}</td>
-                <td>{% if paciente.activo %}Yes{% else %}No{% endif %}</td>
-                <td>{% if paciente.fechaRegistro %}{{ paciente.fechaRegistro|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ paciente.ocupacion }}</td>
-                <td>
-                    <ul>
-                      <li>
-                        <a href="{{ path('paciente_show', { 'id': paciente.id }) }}">
-                          <div class="label label-table label-info">Ver Detalles</div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{ path('paciente_edit', { 'id': paciente.id }) }}">
-                          <div class="label label-table label-warning">Modificar</div>
-                        </a>
-                      </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+  <!-- <table class="table table-hover table-vcenter"> -->
+  <table id="content-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th class="min-mobile">DNI</th>
+        <th class="min-mobile">Paterno</th>
+        <th class="min-desktop">Materno</th>
+        <th class="min-tablet">Nombre</th>
+        <th class="min-desktop">Fechanacimiento</th>
+        <th class="min-tablet">Telefono</th>
+        <th class="min-tablet">H. Clinica</th>
+        <th class="min-desktop">Fecharegistro</th>
+        <th class="min-desktop">Activo</th>
+        <th class="min-desktop">Genero</th>
+        <th class="min-desktop">Ocupacion</th>
+        <th class="min-mobile">Accciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for paciente in pacientes %}
+        <tr>
+          <td>{{ paciente.dni }}</td>
+          <td>{{ paciente.paterno }}</td>
+          <td>{{ paciente.materno }}</td>
+          <td>{{ paciente.nombre }}</td>
+          <td>
+            {% if paciente.fechaNacimiento %}{{ paciente.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}
+          </td>
+          <td>{{ paciente.telefono }}</td>
+          <td>{{ paciente.historia }}</td>
+          <td>
+            {% if paciente.fechaRegistro %}{{ paciente.fechaRegistro|date('Y-m-d H:i:s') }}{% endif %}
+          </td>
+          <td>
+            {% if paciente.activo %}Yes{% else %}No{% endif %}
+          </td>
+          <td>{{ paciente.genero }}</td>
+          <td>{{ paciente.ocupacion }}</td>
+          <td>
+            <ul>
+              <li>
+                <a href="{{ path('paciente_show', { 'id': paciente.id }) }}">
+                  <div class="label label-table label-info">Ver Detalles</div>
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('paciente_edit', { 'id': paciente.id }) }}">
+                  <div class="label label-table label-warning">Modificar</div>
+                </a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
-    <a href="{{ path('paciente_new') }}">
-      <span class="btn btn-success fileinput-button dz-clickable">
-        <i class="fa fa-plus"></i>
-        <span>Agregar nuevo elemento</span>
-      </span>
-    </a>
+  <a href="{{ path('paciente_new') }}">
+    <span class="btn btn-success fileinput-button dz-clickable">
+      <i class="fa fa-plus"></i>
+      <span>Agregar nuevo elemento</span>
+    </span>
+  </a>
+{% endblock %}
+
+{% block script_region %}
+  <script src="{{ asset('plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
+  <script src="{{ asset('plugins/datatables/media/js/jquery.dataTables.js') }}"></script>
+  <script src="{{ asset('plugins/datatables/media/js/dataTables.bootstrap.js') }}"></script>
+  <script src="{{ asset('plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // $('#demo-dt-selection').DataTable();
+      var rowSelection = $('#content-table').DataTable({
+        "responsive": true,
+        "language": {
+          "paginate": {
+            "previous": '<i class="fa fa-angle-left"></i>',
+            "next": '<i class="fa fa-angle-right"></i>'
+          }
+        }
+      });
+      $('#content-table').on('click', 'tr', function() {
+        if ($(this).hasClass('selected')) {
+          $(this).removeClass('selected');
+        } else {
+          rowSelection.$('tr.selected').removeClass('selected');
+          $(this).addClass('selected');
+        }
+      });
+      $('#searchbox').keyup(function() {
+        rowSelection.search($(this).val()).draw();
+      });
+      $('#content-table_filter').hide();
+    });
+  </script>
 {% endblock %}

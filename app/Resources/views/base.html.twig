@@ -177,7 +177,7 @@
             <!--Searchbox-->
             <div class="searchbox">
               <div class="input-group custom-search-form">
-                <input type="text" class="form-control" placeholder="Search..">
+                <input id="searchbox" type="text" class="form-control" placeholder="Search..">
                 <span class="input-group-btn">
                   <button class="text-muted" type="button">
                     <i class="fa fa-search"></i>
@@ -264,7 +264,8 @@
                       </a>
                     </li>
 
-                    <!--Menu list item-->
+                    <!--
+
                     <li>
                       <a href="index.html#">
                         <i class="fa fa-files-o"></i>
@@ -274,7 +275,6 @@
                         <i class="arrow"></i>
                       </a>
 
-                      <!--Submenu-->
                       <ul class="collapse">
                         <li>
                           <a href="{{ path('ficha_new') }}">Nueva ficha</a>
@@ -284,6 +284,7 @@
                         </li>
                       </ul>
                     </li>
+                    -->
                     <li class="list-divider"></li>
 
                     <!--Menu list item-->
@@ -329,27 +330,6 @@
                         </li>
                         <li>
                           <a href="{{ path('causa_new') }}">Nuevo</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="list-divider"></li>
-
-                    <!--Menu list item-->
-                    <li>
-                      <a href="index.html#">
-                        <i class="psi-gear-2"></i>
-                        <span class="menu-title">
-                          Estado Evolutivo
-                        </span>
-                      </a>
-
-                      <!--Submenu-->
-                      <ul class="collapse">
-                        <li>
-                          <a href="{{ path('estado-evolutivo_index') }}">Listar</a>
-                        </li>
-                        <li>
-                          <a href="{{ path('estado-evolutivo_new') }}">Nuevo</a>
                         </li>
                       </ul>
                     </li>

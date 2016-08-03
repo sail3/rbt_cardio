@@ -65,7 +65,9 @@
         } }) }}
         <div class="col-sm-6">
           {{ form_widget(form.genero, {'attr':{
-        'class' : 'form-control input-sm'
+        'class' : 'form-control input-sm',
+        'data-switchery' : 'true',
+        'style' : "display: none;"
         } }) }}
         </div>
       </div>
@@ -139,6 +141,7 @@
 {% block script_region %}
 <script type="text/javascript">
 new Switchery(document.getElementById('paciente_activo'), { size: 'large' });
+new Switchery(document.getElementById('paciente_genero'), { size: 'large' });
 
 </script>
 {% endblock %}
