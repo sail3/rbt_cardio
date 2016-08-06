@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ficha
  *
- * @ORM\Table(name="ficha")
+ * @ORM\Table(name="ficha", indexes={@ORM\Index(name="fk_ficha_historia_clinica1_idx", columns={"historia_clinica_idpaciente"})})
  * @ORM\Entity
  */
 class Ficha
@@ -24,7 +24,7 @@ class Ficha
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_ingreso", type="datetime", nullable=true)
+     * @ORM\Column(name="fecha_ingreso", type="date", nullable=true)
      */
     private $fechaIngreso;
 
@@ -87,7 +87,7 @@ class Ficha
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="alta_fecha", type="datetime", nullable=true)
+     * @ORM\Column(name="alta_fecha", type="date", nullable=true)
      */
     private $altaFecha;
 
@@ -104,6 +104,17 @@ class Ficha
      * @ORM\Column(name="anotaciones", type="text", nullable=true)
      */
     private $anotaciones;
+
+    /**
+     * @var \HistoriaClinica
+     *
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="HistoriaClinica")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="historia_clinica_idpaciente", referencedColumnName="idpaciente")
+     * })
+     */
+    private $historiaClinicapaciente;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -131,7 +142,7 @@ class Ficha
      *
      * @ORM\ManyToMany(targetEntity="Medicacion", mappedBy="idficha")
      */
-    private $idmedicacionAlta;
+    private $idmedicacion;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -148,10 +159,9 @@ class Ficha
         $this->idcausaDescompensante = new \Doctrine\Common\Collections\ArrayCollection();
         $this->idestadoEvolutivo = new \Doctrine\Common\Collections\ArrayCollection();
         $this->idfactorRiesgo = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->idmedicacionAlta = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idmedicacion = new \Doctrine\Common\Collections\ArrayCollection();
         $this->idrxTorax = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Get idficha
@@ -440,6 +450,29 @@ class Ficha
     }
 
     /**
+     * Set historiaClinicapaciente
+     *
+     * @param \CardioBundle\Entity\HistoriaClinica $historiaClinicapaciente
+     * @return Ficha
+     */
+    public function setHistoriaClinicapaciente(\CardioBundle\Entity\HistoriaClinica $historiaClinicapaciente)
+    {
+        $this->historiaClinicapaciente = $historiaClinicapaciente;
+
+        return $this;
+    }
+
+    /**
+     * Get historiaClinicapaciente
+     *
+     * @return \CardioBundle\Entity\HistoriaClinica
+     */
+    public function getHistoriaClinicapaciente()
+    {
+        return $this->historiaClinicapaciente;
+    }
+
+    /**
      * Add idcausaDescompensante
      *
      * @param \CardioBundle\Entity\CausaDescompensante $idcausaDescompensante
@@ -539,36 +572,36 @@ class Ficha
     }
 
     /**
-     * Add idmedicacionAlta
+     * Add idmedicacion
      *
-     * @param \CardioBundle\Entity\Medicacion $idmedicacionAlta
+     * @param \CardioBundle\Entity\Medicacion $idmedicacion
      * @return Ficha
      */
-    public function addIdmedicacionAltum(\CardioBundle\Entity\Medicacion $idmedicacionAlta)
+    public function addIdmedicacion(\CardioBundle\Entity\Medicacion $idmedicacion)
     {
-        $this->idmedicacionAlta[] = $idmedicacionAlta;
+        $this->idmedicacion[] = $idmedicacion;
 
         return $this;
     }
 
     /**
-     * Remove idmedicacionAlta
+     * Remove idmedicacion
      *
-     * @param \CardioBundle\Entity\Medicacion $idmedicacionAlta
+     * @param \CardioBundle\Entity\Medicacion $idmedicacion
      */
-    public function removeIdmedicacionAltum(\CardioBundle\Entity\Medicacion $idmedicacionAlta)
+    public function removeIdmedicacion(\CardioBundle\Entity\Medicacion $idmedicacion)
     {
-        $this->idmedicacionAlta->removeElement($idmedicacionAlta);
+        $this->idmedicacion->removeElement($idmedicacion);
     }
 
     /**
-     * Get idmedicacionAlta
+     * Get idmedicacion
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getIdmedicacionAlta()
+    public function getIdmedicacion()
     {
-        return $this->idmedicacionAlta;
+        return $this->idmedicacion;
     }
 
     /**
@@ -602,5 +635,10 @@ class Ficha
     public function getIdrxTorax()
     {
         return $this->idrxTorax;
+    }
+
+    public function __tostring()
+    {
+      return $this->getNombre();
     }
 }

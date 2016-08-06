@@ -3,10 +3,13 @@
 namespace CardioBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use CardioBundle\Form\Type\GenericType;
+use CardioBundle\Form\Type\CausaDescompensanteType;
 
 class FichaType extends AbstractType
 {
@@ -17,8 +20,17 @@ class FichaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fechaIngreso', 'datetime')
-            ->add('motivoHospitalizacion')
+            ->add('fechaIngreso', 'date', array(
+              'widget' => 'single_text',
+              'html5' => false,
+            ))
+            ->add('motivoHospitalizacion', 'choice', array(
+              'choices' => [
+                'Consultorio',
+                'Shock Trauma',
+                'Topico Medicina',
+                ]
+            ))
             ->add('fallaCardiaca')
             ->add('fallaCardiacaEtiologia')
             ->add('nyhaIngreso')
@@ -26,7 +38,10 @@ class FichaType extends AbstractType
             ->add('fraccionEyeccion')
             ->add('tapse')
             ->add('altaMotivo')
-            ->add('altaFecha', 'datetime')
+            ->add('altaFecha', 'date', array(
+              'widget' => 'single_text',
+              'html5' => false,
+            ))
             ->add('altaDescripcion')
             ->add('anotaciones')
             ->add('idcausaDescompensante', 'entity', array(
@@ -47,7 +62,7 @@ class FichaType extends AbstractType
               'multiple' => true,
               'required' => false,
             ))
-            ->add('idmedicacionAlta', 'entity', array(
+            ->add('idmedicacion', 'entity', array(
               'class' => 'CardioBundle\Entity\Medicacion',
               'expanded' => true,
               'multiple' => true,
@@ -59,21 +74,6 @@ class FichaType extends AbstractType
               'multiple' => true,
               'required' => false,
             ))
-            // ->add('idcausaDescompensante', 'entity', array(
-            //   'entry_type' => ChoiceType::class
-            // ))
-            // ->add('idestadoEvolutivo', CollectionType::class, array(
-            //   'entry_type' => ChoiceType::class
-            // ))
-            // ->add('idfactorRiesgo', CollectionType::class, array(
-            //   'entry_type' => ChoiceType::class
-            // ))
-            // ->add('idmedicacionAlta', CollectionType::class, array(
-            //   'entry_type' => ChoiceType::class
-            // ))
-            // ->add('idrxTorax', CollectionType::class, array(
-            //   'entry_type' => ChoiceType::class
-            // ))
         ;
     }
 

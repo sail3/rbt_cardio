@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Paciente
  *
- * @ORM\Table(name="paciente", uniqueConstraints={@ORM\UniqueConstraint(name="historia_UNIQUE", columns={"historia"}), @ORM\UniqueConstraint(name="dni_UNIQUE", columns={"dni"})})
+ * @ORM\Table(name="paciente", uniqueConstraints={@ORM\UniqueConstraint(name="historia_UNIQUE", columns={"historia"}), @ORM\UniqueConstraint(name="dni_UNIQUE", columns={"dni"}), @ORM\UniqueConstraint(name="numero_seguro_UNIQUE", columns={"numero_seguro"})})
  * @ORM\Entity
  */
 class Paciente
@@ -34,6 +34,13 @@ class Paciente
      * @ORM\Column(name="dni", type="string", length=8, nullable=false)
      */
     private $dni;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numero_seguro", type="string", length=11, nullable=false)
+     */
+    private $numeroSeguro;
 
     /**
      * @var string
@@ -66,7 +73,7 @@ class Paciente
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_nacimiento", type="datetime", nullable=false)
+     * @ORM\Column(name="fecha_nacimiento", type="date", nullable=false)
      */
     private $fechaNacimiento;
 
@@ -87,7 +94,7 @@ class Paciente
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_registro", type="datetime", nullable=false)
+     * @ORM\Column(name="fecha_registro", type="date", nullable=false)
      */
     private $fechaRegistro;
 
@@ -154,6 +161,29 @@ class Paciente
     public function getDni()
     {
         return $this->dni;
+    }
+
+    /**
+     * Set numeroSeguro
+     *
+     * @param string $numeroSeguro
+     * @return Paciente
+     */
+    public function setNumeroSeguro($numeroSeguro)
+    {
+        $this->numeroSeguro = $numeroSeguro;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroSeguro
+     *
+     * @return string
+     */
+    public function getNumeroSeguro()
+    {
+        return $this->numeroSeguro;
     }
 
     /**
@@ -361,10 +391,5 @@ class Paciente
     public function getOcupacion()
     {
         return $this->ocupacion;
-    }
-
-    public function __tostring()
-    {
-      return $this->getNombre();
     }
 }

@@ -1,0 +1,47 @@
+{# {% extends 'base.html.twig' %} #}
+
+{% block body %}
+    <h1>HistoriaClinica list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Transfusionsanguinea</th>
+                <th>Asistecontroles</th>
+                <th>Nrohospitalizaciones</th>
+                <th>Peso</th>
+                <th>Talla</th>
+                <th>Tfg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for historiaClinica in historiaClinicas %}
+            <tr>
+                <td><a href="{{ path('historia-clinica_show', { 'id': historiaClinica.idpaciente.id }) }}">{{ historiaClinica.transfusionSanguinea }}</a></td>
+                <td>{% if historiaClinica.asisteControles %}Yes{% else %}No{% endif %}</td>
+                <td>{{ historiaClinica.nroHospitalizaciones }}</td>
+                <td>{{ historiaClinica.peso }}</td>
+                <td>{{ historiaClinica.talla }}</td>
+                <td>{{ historiaClinica.tfg }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('historia-clinica_show', { 'id': historiaClinica.idpaciente.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('historia-clinica_edit', { 'id': historiaClinica.idpaciente.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('historia-clinica_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -178,6 +178,7 @@ class FactorRiesgo
         return $this->idficha;
     }
 
+
     public function __tostring()
     {
       return $this->getNombre();

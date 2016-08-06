@@ -15,11 +15,11 @@ class Medicacion
     /**
      * @var integer
      *
-     * @ORM\Column(name="idmedicacion_alta", type="integer", nullable=false)
+     * @ORM\Column(name="idmedicacion", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idmedicacionAlta;
+    private $idmedicacion;
 
     /**
      * @var string
@@ -45,10 +45,10 @@ class Medicacion
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Ficha", inversedBy="idmedicacionAlta")
+     * @ORM\ManyToMany(targetEntity="Ficha", inversedBy="idmedicacion")
      * @ORM\JoinTable(name="medicacion_has_ficha",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="idmedicacion_alta", referencedColumnName="idmedicacion_alta")
+     *     @ORM\JoinColumn(name="idmedicacion", referencedColumnName="idmedicacion")
      *   },
      *   inverseJoinColumns={
      *     @ORM\JoinColumn(name="idficha", referencedColumnName="idficha")
@@ -58,22 +58,38 @@ class Medicacion
     private $idficha;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="HistoriaClinica", inversedBy="idmedicacion")
+     * @ORM\JoinTable(name="medicacion_has_historia_clinica",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="idmedicacion", referencedColumnName="idmedicacion")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="idpaciente", referencedColumnName="idpaciente")
+     *   }
+     * )
+     */
+    private $idpaciente;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->idficha = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idpaciente = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
     /**
-     * Get idmedicacionAlta
+     * Get idmedicacion
      *
      * @return integer
      */
     public function getId()
     {
-        return $this->idmedicacionAlta;
+        return $this->idmedicacion;
     }
 
     /**
@@ -176,6 +192,39 @@ class Medicacion
     public function getIdficha()
     {
         return $this->idficha;
+    }
+
+    /**
+     * Add idpaciente
+     *
+     * @param \CardioBundle\Entity\HistoriaClinica $idpaciente
+     * @return Medicacion
+     */
+    public function addIdpaciente(\CardioBundle\Entity\HistoriaClinica $idpaciente)
+    {
+        $this->idpaciente[] = $idpaciente;
+
+        return $this;
+    }
+
+    /**
+     * Remove idpaciente
+     *
+     * @param \CardioBundle\Entity\HistoriaClinica $idpaciente
+     */
+    public function removeIdpaciente(\CardioBundle\Entity\HistoriaClinica $idpaciente)
+    {
+        $this->idpaciente->removeElement($idpaciente);
+    }
+
+    /**
+     * Get idpaciente
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdpaciente()
+    {
+        return $this->idpaciente;
     }
 
     public function __tostring()

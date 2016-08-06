@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use CardioBundle\Entity\Paciente;
+use CardioBundle\Entity\HistoriaClinica;
 use CardioBundle\Form\PacienteType;
 use CardioBundle\Controller\FichaController;
 
@@ -44,8 +45,14 @@ class PacienteController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($paciente);
+            $em->flush();
+
+            $historia = new HistoriaClinica();
+            $historia->setIdpaciente($paciente);
+            $em->persist($historia);
             $em->flush();
 
             return $this->redirectToRoute('paciente_show', array('id' => $paciente->getId()));
@@ -67,8 +74,17 @@ class PacienteController extends Controller
         $deleteForm = $this->createDeleteForm($paciente);
         $logged_user = $this->get('security.context')->getToken()->getUser();
 
+        $em = $this->getDoctrine()->getManager();
+        $historiaClinica = $em->getRepository('CardioBundle\Entity\HistoriaClinica')->findOneBy(array(
+              'idpaciente' => $paciente,
+            ));
+        $fichas = $em->getRepository('CardioBundle\Entity\Ficha')->findBy(array(
+          'historiaClinicapaciente' => $historiaClinica,
+        ));
         return $this->render('paciente/show.html.twig', array(
             'paciente' => $paciente,
+            'historiaClinica' => $historiaClinica,
+            'fichas' => $fichas,
             'delete_form' => $deleteForm->createView(),
             'usuario_activo' => $logged_user,
         ));

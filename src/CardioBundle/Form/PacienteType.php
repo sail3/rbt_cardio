@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 class PacienteType extends AbstractType
 {
     /**
@@ -17,18 +19,26 @@ class PacienteType extends AbstractType
         $builder
             ->add('historia')
             ->add('dni')
+            ->add('numeroSeguro')
             ->add('nombre')
             ->add('paterno')
             ->add('materno')
             ->add('genero')
-            ->add('fechaNacimiento', 'datetime')
+            ->add('fechaNacimiento', DateType::class, array(
+              'widget' => 'single_text',
+              'html5' => false,
+            ))
             ->add('telefono')
             ->add('activo')
-            ->add('fechaRegistro', 'datetime')
+            ->add('fechaRegistro', DateType::class, array(
+              'widget' => 'single_text',
+              'html5' => false,
+              // 'attr' => ['class' => 'js-datepicker'],
+            ))
             ->add('ocupacion')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

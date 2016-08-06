@@ -22,6 +22,9 @@ cardio_rx-torax:
 cardio_user:
     resource: "@CardioBundle/Resources/config/routing/usuario.yml"
     prefix:   /admin/user
+cardio_historia-clinica:
+    resource: "@CardioBundle/Resources/config/routing/historiaclinica.yml"
+    prefix:   /historia-clinica
 
 cardio_homepage:
     path:     /

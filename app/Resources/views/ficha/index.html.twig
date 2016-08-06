@@ -1,21 +1,23 @@
 {% extends 'base.html.twig' %}
-{% block page_title %}
-    <h1>Ficha | Listado</h1>
-{% endblock %}
-{% block body %}
 
-    <table class="table table-hover table-vcenter">
+{% block body %}
+    <h1>Ficha list</h1>
+
+    <table>
         <thead>
             <tr>
                 <th>Idficha</th>
                 <th>Fechaingreso</th>
-                <th>Motivo de Hospitalizacion</th>
+                <th>Motivohospitalizacion</th>
                 <th>Fallacardiaca</th>
+                <th>Fallacardiacaetiologia</th>
                 <th>Nyhaingreso</th>
-                <th>Sindrome cardiorenal</th>
-                <th>Fraccion de eyeccion</th>
+                <th>Sindromecardiorenal</th>
+                <th>Fraccioneyeccion</th>
                 <th>Tapse</th>
-                <th>Alta</th>
+                <th>Altamotivo</th>
+                <th>Altafecha</th>
+                <th>Altadescripcion</th>
                 <th>Anotaciones</th>
                 <th>Actions</th>
             </tr>
@@ -23,56 +25,37 @@
         <tbody>
         {% for ficha in fichas %}
             <tr>
-                <td><a href="{{ path('ficha_show', { 'id': ficha.id }) }}">{{ ficha.id }}</a></td>
-                <td>{% if ficha.fechaIngreso %}{{ ficha.fechaIngreso|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td><a href="{{ path('ficha_show', { 'id': ficha.idficha }) }}">{{ ficha.idficha }}</a></td>
+                <td>{% if ficha.fechaIngreso %}{{ ficha.fechaIngreso|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ ficha.motivoHospitalizacion }}</td>
-                <td>
-                  <span class="text-semibold">
-                {% if ficha.fallaCardiaca %}Yes{% else %}No{% endif %}
-                  </span><br>
-                  <small class="text-muted">
-                {{ ficha.fallaCardiacaEtiologia }}
-                  </small>
-                </td>
+                <td>{% if ficha.fallaCardiaca %}Yes{% else %}No{% endif %}</td>
+                <td>{{ ficha.fallaCardiacaEtiologia }}</td>
                 <td>{{ ficha.nyhaIngreso }}</td>
                 <td>{{ ficha.sindromeCardiorenal }}</td>
                 <td>{{ ficha.fraccionEyeccion }}</td>
                 <td>{{ ficha.tapse }}</td>
-                <td>
-                  <span class="text-semibold">
-                {{ ficha.altaMotivo }}
-                  </span><br>
-                  <small class="text-muted">
-                {% if ficha.altaFecha %}{{ ficha.altaFecha|date('Y-m-d H:i:s') }}{% endif %}
-              </small><br>
-                  <span class="text-semibold">
-                {{ ficha.altaDescripcion }}
-
-                  </span>
-                </td>
+                <td>{{ ficha.altaMotivo }}</td>
+                <td>{% if ficha.altaFecha %}{{ ficha.altaFecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ ficha.altaDescripcion }}</td>
                 <td>{{ ficha.anotaciones }}</td>
                 <td>
                     <ul>
-                      <li>
-                        <a href="{{ path('ficha_show', { 'id': ficha.id }) }}">
-                          <div class="label label-table label-info">Ver Detalles</div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{ path('ficha_edit', { 'id': ficha.id }) }}">
-                          <div class="label label-table label-warning">Modificar</div>
-                        </a>
-                      </li>
+                        <li>
+                            <a href="{{ path('ficha_show', { 'id': ficha.idficha }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ficha_edit', { 'id': ficha.idficha }) }}">edit</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('ficha_new') }}">
-      <span class="btn btn-success fileinput-button dz-clickable">
-        <i class="fa fa-plus"></i>
-        <span>Nueva Ficha</span>
-      </span>
-    </a>
+
+    <ul>
+        <li>
+            <a href="{{ path('ficha_new') }}">Create a new entry</a>
+        </li>
+    </ul>
 {% endblock %}

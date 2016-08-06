@@ -271,7 +271,7 @@ class Usuario implements UserInterface, \Serializable
      * @param string $roles
      * @return Usuario
      */
-    public function setrole($roles)
+    public function setRole($roles)
     {
         $this->roles = $roles;
 
@@ -287,10 +287,11 @@ class Usuario implements UserInterface, \Serializable
     {
         return $this->roles;
     }
+
     /**
      * Get roles
      *
-     * @return string[]
+     * @return string
      */
     public function getRoles()
     {
@@ -369,4 +370,8 @@ class Usuario implements UserInterface, \Serializable
       ) = unserialize($serialized);
     }
 
+    public function __tostring()
+    {
+      return $this->getNombre();
+    }
 }

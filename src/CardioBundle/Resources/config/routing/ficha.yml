@@ -9,7 +9,7 @@ ficha_show:
     methods:  GET
 
 ficha_new:
-    path:     /new
+    path:     /new/{idpaciente}
     defaults: { _controller: "CardioBundle:Ficha:new" }
     methods:  [GET, POST]
 

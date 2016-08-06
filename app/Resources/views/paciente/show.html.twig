@@ -114,7 +114,7 @@
               </td>
               <td class="text-center">
                 <span class="text">
-                  {% if paciente.fechaNacimiento %}{{ paciente.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}
+                  {% if paciente.fechaNacimiento %}{{ paciente.fechaNacimiento|date('Y-m-d') }}{% endif %}
                 </span>
               </td>
             </tr>
@@ -157,7 +157,7 @@
               </td>
               <td class="text-center">
                 <span class="text">
-                  {% if paciente.fechaRegistro %}{{ paciente.fechaRegistro|date('Y-m-d H:i:s') }}{% endif %}
+                  {% if paciente.fechaRegistro %}{{ paciente.fechaRegistro|date('Y-m-d') }}{% endif %}
                 </span>
               </td>
             </tr>
@@ -197,18 +197,151 @@
   <div class="col-lg-6">
     <div class="panel">
       <div class="panel-heading">
-        <h3 class="panel-title">Acciones</h3>
+        <h3 class="panel-title">Historia Clinica | 
+        <a href="{{ path('historia-clinica_edit', { 'id': historiaClinica.idpaciente.id }) }}">
+          <button class="btn btn-info" type="button">Editar historia Clinica</button>
+        </a>
+        </h3>
       </div>
+      <table class="table table-hover table-vcenter">
+        <tbody>
+          <tr>
+            <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Transfusionsanguinea</span>
+            </td>
+            <td class="text-center">
+              <span class="text">
+                {% if historiaClinica.transfusionSanguinea %}Yes{% else %}No{% endif %}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Asistecontroles</span>
+            </td>
+            <td class="text-center">
+              <span class="text">
+                {% if historiaClinica.asisteControles %}Yes{% else %}No{% endif %}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Nrohospitalizaciones</span>
+            </td>
+            <td class="text-center">
+              <span class="text">
+                {{ historiaClinica.nroHospitalizaciones }}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Peso</span>
+            </td>
+            <td class="text-center">
+              <span class="text">
+                {{ historiaClinica.peso }}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">Talla</span>
+            </td>
+            <td class="text-center">
+              <span class="text">
+                {{ historiaClinica.talla }}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <span>
+                <i class="fa fa-plus fa-lg"></i>
+              </span>
+            </td>
+            <td>
+              <span class="text-semibold">TFG</span>
+            </td>
+            <td class="text-center">
+              <span class="text">
+                {{ historiaClinica.tfg }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-      <ul class="nav nav-pills nav-stacked">
-        <li>
-          <a href="{{ path('ficha_index') }}"><button class="btn btn-info" type="button">Ver Fichas</button></a>
-        </li>
-        <li>
-          <a href="{{ path('ficha_new') }}"><button class="btn btn-success" type="button">Registrar Ficha</button></a>
-        </li>
-      </ul>
+      <div class="panel-heading">
+        <h3 class="panel-title">Fichas |
+          <a href="{{ path('ficha_new', {'idpaciente': historiaClinica.getIdpaciente.getId }) }}">
+            <button class="btn btn-success" type="button">Nueva Ficha</button>
+          </a>
+        </h3>
+      </div>
+      <table class="table table-hover table-vcenter">
+        <thead>
+          <tr>
+            <th>Motivo de Hospitalizacion</th>
+            <th>Fechaingreso</th>
+            <th>Alta</th>
+            <th>Anotaciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ficha in fichas %}
+            <tr>
+              <td>
+              <a href="{{ path('ficha_edit', { 'id': ficha.id }) }}">
+              {{ ficha.motivoHospitalizacion }}
+              </a>
+              </td>
+              <td>
+                {% if ficha.fechaIngreso %}{{ ficha.fechaIngreso|date('Y-m-d') }}{% endif %}
+              </td>
+              <td>
+                <span class="text-semibold">
+                  {{ ficha.altaMotivo }}
+                </span><br>
+                <small class="text-muted">
+                  {% if ficha.altaFecha %}{{ ficha.altaFecha|date('Y-m-d') }}{% endif %}
+                </small><br>
+                <span class="text-semibold">
+                  {{ ficha.altaDescripcion }}
 
+                </span>
+              </td>
+              <td>{{ ficha.anotaciones }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
 {% endblock %}

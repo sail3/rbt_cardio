@@ -1,7 +1,7 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
 
 {% block body %}
-    <h1>Ficha edit</h1>
+    <h1>HistoriaClinica edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('ficha_index') }}">Back to the list</a>
+            <a href="{{ path('historia-clinica_index') }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

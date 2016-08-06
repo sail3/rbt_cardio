@@ -7,20 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * HistoriaClinica
  *
- * @ORM\Table(name="historia_clinica", indexes={@ORM\Index(name="fk_historia_clinica_ficha1_idx", columns={"idficha"}), @ORM\Index(name="fk_historia_clinica_paciente1_idx", columns={"paciente_idpaciente"})})
+ * @ORM\Table(name="historia_clinica", uniqueConstraints={@ORM\UniqueConstraint(name="paciente_idpaciente_UNIQUE", columns={"idpaciente"})}, indexes={@ORM\Index(name="fk_historia_clinica_paciente1_idx", columns={"idpaciente"})})
  * @ORM\Entity
  */
 class HistoriaClinica
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="idhistoria", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $idhistoria;
-
     /**
      * @var boolean
      *
@@ -64,51 +55,41 @@ class HistoriaClinica
     private $tfg;
 
     /**
-     * @var \Ficha
-     *
-     * @ORM\ManyToOne(targetEntity="Ficha")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idficha", referencedColumnName="idficha")
-     * })
-     */
-    private $idficha;
-
-    /**
      * @var \Paciente
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Paciente")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="paciente_idpaciente", referencedColumnName="idpaciente")
+     *   @ORM\JoinColumn(name="idpaciente", referencedColumnName="idpaciente")
      * })
      */
-    private $pacientepaciente;
-
-
+    private $idpaciente;
 
     /**
-     * Set idhistoria
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @param integer $idhistoria
-     * @return HistoriaClinica
+     * @ORM\ManyToMany(targetEntity="Medicacion", mappedBy="idpaciente")
      */
-    public function setIdhistoria($idhistoria)
-    {
-        $this->idhistoria = $idhistoria;
-
-        return $this;
-    }
+    private $idmedicacion;
 
     /**
-     * Get idhistoria
-     *
-     * @return integer 
+     * Constructor
      */
-    public function getIdhistoria()
+    public function __construct()
     {
-        return $this->idhistoria;
+        $this->idmedicacion = new \Doctrine\Common\Collections\ArrayCollection();
     }
+    /**
+     * Get idpaciente
+     *
+     * @return \CardioBundle\Entity\Paciente
+     */
+    public function getId()
+    {
+        return $this->idpaciente->getId();
+    }
+
 
     /**
      * Set transfusionSanguinea
@@ -126,7 +107,7 @@ class HistoriaClinica
     /**
      * Get transfusionSanguinea
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getTransfusionSanguinea()
     {
@@ -149,7 +130,7 @@ class HistoriaClinica
     /**
      * Get asisteControles
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getAsisteControles()
     {
@@ -172,7 +153,7 @@ class HistoriaClinica
     /**
      * Get nroHospitalizaciones
      *
-     * @return integer 
+     * @return integer
      */
     public function getNroHospitalizaciones()
     {
@@ -195,7 +176,7 @@ class HistoriaClinica
     /**
      * Get peso
      *
-     * @return string 
+     * @return string
      */
     public function getPeso()
     {
@@ -218,7 +199,7 @@ class HistoriaClinica
     /**
      * Get talla
      *
-     * @return string 
+     * @return string
      */
     public function getTalla()
     {
@@ -241,7 +222,7 @@ class HistoriaClinica
     /**
      * Get tfg
      *
-     * @return string 
+     * @return string
      */
     public function getTfg()
     {
@@ -249,48 +230,58 @@ class HistoriaClinica
     }
 
     /**
-     * Set idficha
+     * Set idpaciente
      *
-     * @param \CardioBundle\Entity\Ficha $idficha
+     * @param \CardioBundle\Entity\Paciente $idpaciente
      * @return HistoriaClinica
      */
-    public function setIdficha(\CardioBundle\Entity\Ficha $idficha = null)
+    public function setIdpaciente(\CardioBundle\Entity\Paciente $idpaciente)
     {
-        $this->idficha = $idficha;
+        $this->idpaciente = $idpaciente;
 
         return $this;
     }
 
     /**
-     * Get idficha
+     * Get idpaciente
      *
-     * @return \CardioBundle\Entity\Ficha 
+     * @return \CardioBundle\Entity\Paciente
      */
-    public function getIdficha()
+    public function getIdpaciente()
     {
-        return $this->idficha;
+        return $this->idpaciente;
     }
 
     /**
-     * Set pacientepaciente
+     * Add idmedicacion
      *
-     * @param \CardioBundle\Entity\Paciente $pacientepaciente
+     * @param \CardioBundle\Entity\Medicacion $idmedicacion
      * @return HistoriaClinica
      */
-    public function setPacientepaciente(\CardioBundle\Entity\Paciente $pacientepaciente)
+    public function addIdmedicacion(\CardioBundle\Entity\Medicacion $idmedicacion)
     {
-        $this->pacientepaciente = $pacientepaciente;
+        $this->idmedicacion[] = $idmedicacion;
 
         return $this;
     }
 
     /**
-     * Get pacientepaciente
+     * Remove idmedicacion
      *
-     * @return \CardioBundle\Entity\Paciente 
+     * @param \CardioBundle\Entity\Medicacion $idmedicacion
      */
-    public function getPacientepaciente()
+    public function removeIdmedicacion(\CardioBundle\Entity\Medicacion $idmedicacion)
     {
-        return $this->pacientepaciente;
+        $this->idmedicacion->removeElement($idmedicacion);
+    }
+
+    /**
+     * Get idmedicacion
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdmedicacion()
+    {
+        return $this->idmedicacion;
     }
 }
