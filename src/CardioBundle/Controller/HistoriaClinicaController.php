@@ -21,11 +21,13 @@ class HistoriaClinicaController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         $historiaClinicas = $em->getRepository('CardioBundle:HistoriaClinica')->findAll();
 
         return $this->render('historiaclinica/index.html.twig', array(
             'historiaClinicas' => $historiaClinicas,
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -36,6 +38,7 @@ class HistoriaClinicaController extends Controller
     public function newAction(Request $request)
     {
         $historiaClinica = new HistoriaClinica();
+        $logged_user = $this->get('security.context')->getToken()->getUser();
         $form = $this->createForm('CardioBundle\Form\HistoriaClinicaType', $historiaClinica);
         $form->handleRequest($request);
 
@@ -50,6 +53,7 @@ class HistoriaClinicaController extends Controller
         return $this->render('historiaclinica/new.html.twig', array(
             'historiaClinica' => $historiaClinica,
             'form' => $form->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -60,10 +64,12 @@ class HistoriaClinicaController extends Controller
     public function showAction(HistoriaClinica $historiaClinica)
     {
         $deleteForm = $this->createDeleteForm($historiaClinica);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
 
         return $this->render('historiaclinica/show.html.twig', array(
             'historiaClinica' => $historiaClinica,
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
         ));
     }
 
@@ -74,9 +80,10 @@ class HistoriaClinicaController extends Controller
     public function editAction(Request $request, HistoriaClinica $historiaClinica)
     {
         $deleteForm = $this->createDeleteForm($historiaClinica);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
         $editForm = $this->createForm('CardioBundle\Form\HistoriaClinicaType', $historiaClinica);
         $editForm->handleRequest($request);
-
+        // dump($historiaClinica->getIdpaciente()->getId());exit;
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($historiaClinica);
@@ -89,6 +96,8 @@ class HistoriaClinicaController extends Controller
             'historiaClinica' => $historiaClinica,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
+            'user_id' => $historiaClinica->getIdpaciente()->getId(),
         ));
     }
 
