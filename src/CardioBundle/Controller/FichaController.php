@@ -65,12 +65,13 @@ class FichaController extends Controller
     public function showAction(Ficha $ficha)
     {
         $deleteForm = $this->createDeleteForm($ficha);
-        $logged_user = $this->get('security.context')->getToken()->getUser();        
-
+        $logged_user = $this->get('security.context')->getToken()->getUser();
+        // dump($ficha->getHistoriaClinicapaciente()->getIdpaciente()->getId());exit;
         return $this->render('ficha/show.html.twig', array(
             'ficha' => $ficha,
             'delete_form' => $deleteForm->createView(),
-            'usuario_activo' => $logged_user,            
+            'usuario_activo' => $logged_user,
+            'user_id' => $ficha->getHistoriaClinicapaciente()->getIdpaciente()->getId(),
         ));
     }
 
@@ -83,6 +84,8 @@ class FichaController extends Controller
         $deleteForm = $this->createDeleteForm($ficha);
         $editForm = $this->createForm('CardioBundle\Form\FichaType', $ficha);
         $editForm->handleRequest($request);
+        $logged_user = $this->get('security.context')->getToken()->getUser();
+
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -96,6 +99,8 @@ class FichaController extends Controller
             'ficha' => $ficha,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'usuario_activo' => $logged_user,
+            'user_id' => $ficha->getHistoriaClinicapaciente()->getIdpaciente()->getId(),
         ));
     }
 
