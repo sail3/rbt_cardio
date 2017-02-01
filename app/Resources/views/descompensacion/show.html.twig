@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Descompensacion</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Iddescompensacion</th>
+                <td>{{ descompensacion.idDescompensacion }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ descompensacion.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ descompensacion.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Enable</th>
+                <td>{% if descompensacion.enable %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_descompensacion_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_descompensacion_edit', { 'id': descompensacion.idDescompensacion }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Descompensacions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Iddescompensacion</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Enable</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for descompensacion in descompensacions %}
+            <tr>
+                <td><a href="{{ path('admin_descompensacion_show', { 'id': descompensacion.idDescompensacion }) }}">{{ descompensacion.idDescompensacion }}</a></td>
+                <td>{{ descompensacion.nombre }}</td>
+                <td>{{ descompensacion.descripcion }}</td>
+                <td>{% if descompensacion.enable %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_descompensacion_show', { 'id': descompensacion.idDescompensacion }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_descompensacion_edit', { 'id': descompensacion.idDescompensacion }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_descompensacion_new') }}">Create a new descompensacion</a>
+        </li>
+    </ul>
+{% endblock %}

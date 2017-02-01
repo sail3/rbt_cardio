@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ficha</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idficha</th>
+                <td>{{ ficha.idFicha }}</td>
+            </tr>
+            <tr>
+                <th>Fechaingreso</th>
+                <td>{% if ficha.fechaIngreso %}{{ ficha.fechaIngreso|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Motivohospitalizacion</th>
+                <td>{{ ficha.motivoHospitalizacion }}</td>
+            </tr>
+            <tr>
+                <th>Fallacardiaca</th>
+                <td>{% if ficha.fallaCardiaca %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fallacardiacaetiologia</th>
+                <td>{{ ficha.fallaCardiacaEtiologia }}</td>
+            </tr>
+            <tr>
+                <th>Nyhaingreso</th>
+                <td>{{ ficha.nyhaIngreso }}</td>
+            </tr>
+            <tr>
+                <th>Sindromecardiorenal</th>
+                <td>{{ ficha.sindromeCardiorenal }}</td>
+            </tr>
+            <tr>
+                <th>Fraccioneyeccion</th>
+                <td>{{ ficha.fraccionEyeccion }}</td>
+            </tr>
+            <tr>
+                <th>Tapse</th>
+                <td>{{ ficha.tapse }}</td>
+            </tr>
+            <tr>
+                <th>Altamotivo</th>
+                <td>{{ ficha.altaMotivo }}</td>
+            </tr>
+            <tr>
+                <th>Altafecha</th>
+                <td>{% if ficha.altaFecha %}{{ ficha.altaFecha|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Altadescripcion</th>
+                <td>{{ ficha.altaDescripcion }}</td>
+            </tr>
+            <tr>
+                <th>Anotaciones</th>
+                <td>{{ ficha.anotaciones }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Enable</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for causa in causasDescompensante %}
+            {% set descompensacion = causa.idDescompensacion %}
+            <tr>
+                <td>{{ descompensacion.nombre }}</td>
+                <td>{% if descompensacion.enable %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ficha_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('ficha_edit', { 'id': ficha.idFicha }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
